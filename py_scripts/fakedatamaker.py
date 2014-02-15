@@ -7,7 +7,7 @@ boats = [
 'EXPLORA'
 ]
 
-days = 10
+days = 28
 
 d = {}
 
@@ -19,10 +19,19 @@ for j in range(days):
     for i in range(len(boats)):
         d[boats[i]] += [i+1, i+1, i+1]
 
-print d
-
 for k,v in d.iteritems():
     print '{'
     print '    name: \''+k+'\','
     print '    data: ' + str(v[1:-1]) + ''
     print '},'
+
+print ''
+
+cats = []
+
+for j in range(days):
+    cats += ['',j,'']
+
+cats = cats[1:-1]
+
+print str(cats)
