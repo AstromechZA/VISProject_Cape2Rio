@@ -91,66 +91,9 @@
 
     <script>
     $(function () {
-        $('#container').highcharts({
-            title: {
-                text: 'Daily race position'
-            },
-            //subtitle: {
-            //    text: 'Source: WorldClimate.com',
-            //    x: -20
-            //},
-            xAxis: {
-                categories: [0, '', '', 1, '', '', 2, '', '', 3, '', '', 4, '', '', 5, '', '', 6, '', '', 7, '', '', 8, '', '', 9, '', '', 10, '', '', 11, '', '', 12, '', '', 13, '', '', 14, '', '', 15, '', '', 16, '', '', 17, '', '', 18, '', '', 19, '', '', 20, '', '', 21, '', '', 22, '', '', 23, '', '', 24, '', '', 25, '', '', 26, '', '', 27],
-                opposite: true
-            },
-            yAxis: [{
-                title: false,
-                allowDecimals: false,
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }],
-                reversed: true,
-                endOnTick: false,
-                startOnTick: false,
-                tickInterval: 1
-            },{
-                title: false,
-                allowDecimals: false,
-                linkedTo: 0,
-                reversed: true,
-                opposite: true
-            }],
-            plotOptions:{
-                series: {
-                    marker: {
-                        enabled: true,
-                        states: {
-                            hover: {
-                                enabled: false
-                            }
-                        }
-                    },
-                    enableMouseTracking: false,
-                    lineWidth: 10 ,
-                    // events: {
-                    //     mouseOver: function() {
-                    //         $('.highcharts-series').each(function(){$(this).attr('opacity',0.7)});
-                    //         this.group.toFront();
-                    //         $(this.group.element).attr('opacity',1.0)
-                    //     }
-                    // }
-                }
-            },
-            tooltip: {
-                enabled: false
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right'
-            },
-            series: [{
+
+        boatseries = [
+            {
                 name: 'INVESTEC CIAO BELLA',
                 data: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]
             },
@@ -249,10 +192,92 @@
             {
                 name: 'HOT ICE',
                 data: [17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]
+            }];
+
+
+
+        $('#container').highcharts({
+            title: {
+                text: 'Daily race position'
             },
+            //subtitle: {
+            //    text: 'Source: WorldClimate.com',
+            //    x: -20
+            //},
+            xAxis: {
+                categories: [0, '', '', 1, '', '', 2, '', '', 3, '', '', 4, '', '', 5, '', '', 6, '', '', 7, '', '', 8, '', '', 9, '', '', 10, '', '', 11, '', '', 12, '', '', 13, '', '', 14, '', '', 15, '', '', 16, '', '', 17, '', '', 18, '', '', 19, '', '', 20, '', '', 21, '', '', 22, '', '', 23, '', '', 24, '', '', 25, '', '', 26, '', '', 27],
+                opposite: true
+            },
+            yAxis: [{
+                title: false,
+                allowDecimals: false,
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }],
+                reversed: true,
+                endOnTick: false,
+                startOnTick: false,
+                tickInterval: 1,
+                labels: {
+                    formatter: function(){
+                        c = this.chart;
+                        v = this.value;
+                        for (var i = boatseries.length - 1; i >= 0; i--) {
+                            if (boatseries[i].data[0] == v) {
+                                return '' + boatseries[i].name + ' - <strong>' + v + '</strong>';
+                            }
+                        };
+                        return this.value;
+                    }
+                }
+            },{
+                title: false,
+                allowDecimals: false,
+                linkedTo: 0,
+                reversed: true,
+                opposite: true,
+                labels: {
+                    formatter: function(){
+                        c = this.chart;
+                        v = this.value;
+                        for (var i = boatseries.length - 1; i >= 0; i--) {
+                            if (boatseries[i].data[boatseries[i].data.length-1] == v) {
+                                return '<strong>' + v + '</strong> - '  + boatseries[i].name;
+                            }
+                        };
+                        return this.value;
+                    }
+                }
+            }],
+            plotOptions:{
+                series: {
+                    marker: {
+                        enabled: true,
+                        states: {
+                            hover: {
+                                enabled: false
+                            }
+                        }
+                    },
+                    enableMouseTracking: false,
+                    lineWidth: 10 ,
+                    // events: {
+                    //     mouseOver: function() {
+                    //         $('.highcharts-series').each(function(){$(this).attr('opacity',0.7)});
+                    //         this.group.toFront();
+                    //         $(this.group.element).attr('opacity',1.0)
+                    //     }
+                    // }
 
-
-]
+                }
+            },
+            tooltip: {
+                enabled: false
+            },
+            legend: false,
+            series: boatseries
         });
         $('.highcharts-container svg text:last').remove();
     });
