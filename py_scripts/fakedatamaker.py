@@ -46,21 +46,13 @@ for j in range(days):
         boats[t+1] = temp
 
     for i in range(len(boats)):
-        d[boats[i]] += [i+1, i+1, i+1]
+        d[boats[i]] += [i+1]
 
 for k,v in d.iteritems():
     print '{'
     print '    name: \''+k+'\','
-    print '    data: ' + str(v[1:-1]) + ''
+    print '    data: expand_daily_positions(' + str(v) + ', marker_flag),'
+    print '    color:  class_1_colour(0.5),'
+    print '    marker: {enabled: false}'
     print '},'
 
-print ''
-
-cats = []
-
-for j in range(days):
-    cats += ['',j,'']
-
-cats = cats[1:-1]
-
-print str(cats)

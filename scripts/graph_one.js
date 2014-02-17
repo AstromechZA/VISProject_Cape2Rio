@@ -1,91 +1,125 @@
 //graph_one_scripts.js
 
+// marker creation functions
+var marker_flag = function _marker_flag(y) {
+    return {y: y, marker: {symbol: 'url(./images/finishflag.png)', enabled: true}}
+}
+
+var marker_cross = function _marker_cross(y) {
+    return {y: y, marker: {symbol: 'url(./images/redx.png)', enabled: true}}
+}
+
+
+// Colour creation function
+var class_1_colour = function _class_1_colour(o) {
+    return 'rgba(120, 183, 47, ' + o + ')'
+}
+
+var class_2_colour = function _class_2_colour(o) {
+    return 'rgba(183, 47, 47, ' + o + ')'
+}
+
+var class_3_colour = function _class_3_colour(o) {
+    return 'rgba(47, 87, 183, ' + o + ')'
+}
+
+// day label creator
+// must create blank labels in order to separate days
+var day_labels = function _day_labels(n) {
+    o = []
+    for (var i = 0; i <= n; i++) {
+        o.push('', i, '')
+    };
+    return o.slice(1, -1)
+}
+
+// return number with appropriate suffix
+var position_string = function _position_string(i) {
+    return '' + i + (((i % 10) < 4 && (i%10)>0) ? ['st','nd','rd'][i%10-1] : 'th');
+}
+
+var expand_daily_positions = function _expand_daily_positions(position_array, end_mark_f) {
+    o = []
+    for(var i=0;i<position_array.length;i++) {
+        v = position_array[i]
+        o.push(v, v, v)
+    }
+    o[o.length-2] = end_mark_f(o[o.length-2])
+    return o.slice(1, -1)
+}
+
+// boat series hash
 boatseries = [
     {
-        name: 'INVESTEC CIAO BELLA',
-        data: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        color: '#a8ce56',
-        lineWidth: 7,
+        name: 'Investec Ciao Bella',
+        data: expand_daily_positions([5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6], marker_flag),
+        color: class_2_colour(0.5),
         marker: {
             enabled: false
-        },
-        dashStyle: 'shortdash'
+        }
     },
     {
-        name: 'PRIVATEER',
+        name: 'Privateer',
         data: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
-        color: '#0064b8',
+        color: class_1_colour(0.5),
         marker: {
             enabled: false
         }
     },
     {
-        name: 'SCARLET RUNNER',
-        data: [2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, {
-            y: 1,
-            marker: {
-                symbol: 'url(./images/finishflag.png)',
-                enabled: true
-            }
-        }],
+        name: 'Scarlet Runner',
+        data: [2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, marker_flag(1)],
+        color: class_1_colour(1),
         marker: {
             enabled: false
-        },
-        color: '#81bc00'
+        }
     },
     {
-        name: 'ISKAREEN',
+        name: 'Iskareen',
         data: [3, 3, 3, 3, 3, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-        color: '#a8ce56',
-        lineWidth: 7,
-        marker: {
-            enabled: false
-        },
-        dashStyle: 'shortdash'
-    },
-    {
-        name: 'MASERATI',
-        data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-        color: '#f2390e',
+        color: class_1_colour(0.5),
         marker: {
             enabled: false
         }
     },
     {
-        name: 'MUSSULO III',
-        data: [6,6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-        color: '#f26f51',
-        lineWidth: 7,
+        name: 'Maserati',
+        data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,  marker_flag(2)],
+        color: class_1_colour(0.5),
         marker: {
             enabled: false
-        },
-        dashStyle: 'shortdash'
+        }
     },
     {
-        name: 'EXPLORA',
-        data: [7,7, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
-        color: '#3c89ca',
-        lineWidth: 7,
+        name: 'Mussulo III',
+        data: [6,6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+        color: class_2_colour(1),
         marker: {
             enabled: false
-        },
-        dashStyle: 'shortdash'
+        }
+    },
+    {
+        name: 'Explora',
+        data: [7,7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, marker_cross(7)],
+        color: class_2_colour(0.5),
+        marker: {
+            enabled: false
+        }
     }
 ];
 
-var position_string = function _position_string(i) {
-    return '' + i + ((i % 10 < 4) ? ['st','nd','rd'][i%10-1] : 'th');
-}
 
-$('#container').css('height', boatseries.length * 24 + 100);
+// modify graph container to fit height
+$('#container').css('height', boatseries.length * 23 + 100);
 
+// build chart
 $(function () {
     $('#container').highcharts({
         title: {
             text: 'Daily race position'
         },
         xAxis: {
-            categories: [0, '', '', 1, '', '', 2, '', '', 3, '', '', 4, '', '', 5, '', '', 6, '', '', 7, '', '', 8, '', '', 9, '', '', 10, '', '', 11, '', '', 12, '', '', 13, '', '', 14, '', '', 15, '', '', 16, '', '', 17, '', '', 18, '', '', 19, '', '', 20, '', '', 21, '', '', 22, '', '', 23, '', '', 24, '', '', 25, '', '', 26, '', '', 27],
+            categories: day_labels(27),
             opposite: true
         },
         yAxis: [{
