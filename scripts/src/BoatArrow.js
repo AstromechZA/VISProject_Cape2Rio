@@ -1,4 +1,5 @@
 
+// constructor
 var BoatArrow = function _BoatArrow(cll, b, s, cs) {
     this.center = cll;
     this.bearing = b;
@@ -9,6 +10,7 @@ var BoatArrow = function _BoatArrow(cll, b, s, cs) {
     this.reconstruct();
 }
 
+// rebuild geometry
 BoatArrow.prototype.reconstruct = function() {
 
     var wingangle = Math.PI * 0.75;
