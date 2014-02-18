@@ -21,7 +21,7 @@ ssy = (y2 - y1)/n
 cx = x1
 cy = y1
 
-rr =  (8*math.pi) / (n*1.0)
+rr =  (4*math.pi) / (n*1.0)
 
 print '['
 print '    [0, [' + str(cy) + ',' + str(cx) + '], 0],'
@@ -29,8 +29,8 @@ print '    [0, [' + str(cy) + ',' + str(cx) + '], 0],'
 lx = cx
 ly = cy
 for i in range(n):
-    cx += ssx + ssx*math.sin(rr*i)
-    cy += ssy + ssy*math.cos(rr*i)
+    cx += ssx + ssx*math.cos(rr*i)
+    cy += ssy + ssy*math.sin(rr*i)
 
     b = bearing(lx, ly, cx, cy)
 

@@ -1,6 +1,6 @@
 // globbels
 var global_map;
-var global_boat;
+var global_boats;
 var global_rhumbline_path;
 
 // rhumbline object
@@ -38,25 +38,18 @@ var init = function _init() {
         slide: slider_slide
     });
 
-    global_boat = new Boat(dataset[0])
-    global_boat.add_track_to_map(global_map)
+    global_boats = []
 
-    // arrow = new BoatArrow(mapOptions.center, Math.PI/4, 1, '#FF0000')
-    // arrow.setMap(map)
-    // arrow.show()
+    for (var i = dataset.length - 1; i >= 0; i--) {
+        var b = new Boat(dataset[i])
+        b.add_track_to_map(global_map)
+        global_boats.push(b)
+    }
 
 }
 
 var slider_slide = function _slider_slide(event, ui) {
-    global_boat.update(ui.value)
-
-    // arrow.setBearing(ui.value*2);
-    // for (var i = 0; i < boat_circles.length; i++) {
-    //     b = (i < ui.value)
-    //     if (boat_circles[i].visible != b) boat_circles[i].setVisible(b)
-    // };
-
-
+    for (var i = global_boats.length - 1; i >= 0; i--) global_boats[i].update(ui.value)
 }
 
 $(init)
