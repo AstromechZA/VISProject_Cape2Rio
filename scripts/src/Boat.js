@@ -1,18 +1,17 @@
-var Boat = function _Boat(name, cls, handicap, colour) {
-    this.boat_name = name;
-    this.racing_class = cls;
-    this.handicap = handicap;
-    this.colour = colour;
-    this._arrow = null;
-    this._track = null;
+var Boat = function _Boat(dataset) {
+    this._dataset = dataset
+    this.boat_name = dataset.boat_name
+    this.racing_class = dataset.race_class
+    this.handicap = dataset.handicap
+    this.colour = '#FF0000'
+    this._track = null
 }
 
-Boat.prototype.load = function(dataset) {
-    // data set is some array of data points
-    this._track = new BoatTrack(dataset, this)
 
-};
+Boat.prototype.add_track_to_map = function(map_obj) {
+    this._track = new BoatTrack(this, map_obj)
+}
 
-
-
-
+Boat.prototype.update = function(t) {
+    this._track.setProgress(t*3600)
+}
