@@ -1,6 +1,6 @@
 var dataset = [
       {
-        boat_name: 'test boat',
+        yacht_name: 'test boat',
         race_class: 1,
         handicap: 1.213,
             points: [
@@ -656,7 +656,7 @@ var dataset = [
             ]
       },
       {
-        boat_name: 'test boat 2',
+        yacht_name: 'test boat 2',
         race_class: 1,
         handicap: 1.13,
             points: [

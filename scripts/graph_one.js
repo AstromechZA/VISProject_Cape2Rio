@@ -48,8 +48,8 @@ var expand_daily_positions = function _expand_daily_positions(position_array, en
     return o.slice(1, -1)
 }
 
-// boat series hash
-boatseries = [
+// yacht series hash
+yachtseries = [
     {
         name: 'Investec Ciao Bella',
         data: expand_daily_positions([5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6], marker_flag),
@@ -114,7 +114,7 @@ boatseries = [
 
 
 // modify graph container to fit height
-$('#container').css('height', boatseries.length * 23 + 100);
+$('#container').css('height', yachtseries.length * 23 + 100);
 
 // build chart
 $(function () {
@@ -141,14 +141,14 @@ $(function () {
             minPadding: 0.3,
             tickInterval: 1,
             min: 0.5,
-            max: boatseries.length + 0.5,
+            max: yachtseries.length + 0.5,
             labels: {
                 formatter: function(){
                     c = this.chart;
                     v = this.value;
-                    for (var i = boatseries.length - 1; i >= 0; i--) {
-                        if (boatseries[i].data[0] == v || boatseries[i].data[0].y == v) {
-                            return '' + boatseries[i].name + ' - <strong>' + position_string(v) + '</strong>';
+                    for (var i = yachtseries.length - 1; i >= 0; i--) {
+                        if (yachtseries[i].data[0] == v || yachtseries[i].data[0].y == v) {
+                            return '' + yachtseries[i].name + ' - <strong>' + position_string(v) + '</strong>';
                         }
                     };
                     return this.value;
@@ -164,9 +164,9 @@ $(function () {
                 formatter: function(){
                     c = this.chart;
                     v = this.value;
-                    for (var i = 0; i < boatseries.length; i++) {
-                        if (boatseries[i].data[boatseries[i].data.length-1] == v || boatseries[i].data[boatseries[i].data.length-1].y == v) {
-                            return '<strong>' + position_string(v) + '</strong> - '  + boatseries[i].name;
+                    for (var i = 0; i < yachtseries.length; i++) {
+                        if (yachtseries[i].data[yachtseries[i].data.length-1] == v || yachtseries[i].data[yachtseries[i].data.length-1].y == v) {
+                            return '<strong>' + position_string(v) + '</strong> - '  + yachtseries[i].name;
                         }
                     };
                     return this.value;
@@ -201,7 +201,7 @@ $(function () {
             }
         },
         legend: false,
-        series: boatseries
+        series: yachtseries
     });
     $('.highcharts-container svg text:last').remove();
 });

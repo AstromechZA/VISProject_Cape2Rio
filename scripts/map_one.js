@@ -1,6 +1,6 @@
 // globbels
 var global_map;
-var global_boats;
+var global_yachts;
 var global_rhumbline_path;
 
 // rhumbline object
@@ -38,18 +38,18 @@ var init = function _init() {
         slide: slider_slide
     });
 
-    global_boats = []
+    global_yachts = []
 
     for (var i = dataset.length - 1; i >= 0; i--) {
-        var b = new Boat(dataset[i])
+        var b = new Yacht(dataset[i])
         b.add_track_to_map(global_map)
-        global_boats.push(b)
+        global_yachts.push(b)
     }
 
 }
 
 var slider_slide = function _slider_slide(event, ui) {
-    for (var i = global_boats.length - 1; i >= 0; i--) global_boats[i].update(ui.value)
+    for (var i = global_yachts.length - 1; i >= 0; i--) global_yachts[i].update(ui.value)
 }
 
 $(init)

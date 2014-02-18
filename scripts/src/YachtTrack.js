@@ -1,9 +1,9 @@
-var BoatTrack = function _BoatTrack(boat, map) {
-    this.boat = boat
+var YachtTrack = function _YachtTrack(yacht, map) {
+    this.yacht = yacht
     this.points = []
 
     // -----
-    var points = boat._dataset.points
+    var points = yacht._dataset.points
 
     var pl = points.length
 
@@ -14,7 +14,7 @@ var BoatTrack = function _BoatTrack(boat, map) {
             center: new google.maps.LatLng(temp[1][0], temp[1][1]),
             radius: 5000,
             strokeWeight: 0,
-            fillColor: boat.colour,
+            fillColor: yacht.colour,
             fillOpacity: 0.8,
             map: map,
             visible: false
@@ -26,12 +26,12 @@ var BoatTrack = function _BoatTrack(boat, map) {
     // -----
     this.points[0][1].setVisible(true)
 
-    this.arrow = new BoatArrow(this.points[0][1].center, this.points[0][2], 0.7, boat.colour)
+    this.arrow = new YachtArrow(this.points[0][1].center, this.points[0][2], 0.7, yacht.colour)
     this.arrow.setMap(map)
     this.arrow.show()
 }
 
-BoatTrack.prototype.setProgress = function(time) {
+YachtTrack.prototype.setProgress = function(time) {
     var last = this.points[0]
     var pl = this.points.length
     for (var i = 0; i < pl; i++) {

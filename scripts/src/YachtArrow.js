@@ -1,6 +1,6 @@
 
 // constructor
-var BoatArrow = function _BoatArrow(cll, b, s, cs) {
+var YachtArrow = function _YachtArrow(cll, b, s, cs) {
     this.center = cll;
     this.bearing = b;
     this.size = s;
@@ -11,7 +11,7 @@ var BoatArrow = function _BoatArrow(cll, b, s, cs) {
 }
 
 // rebuild geometry
-BoatArrow.prototype.reconstruct = function() {
+YachtArrow.prototype.reconstruct = function() {
 
     var wingangle = Math.PI * 0.75;
     var s_maj = this.size;
@@ -44,24 +44,24 @@ BoatArrow.prototype.reconstruct = function() {
     this.show();
 }
 
-BoatArrow.prototype.setMap = function(m) {
+YachtArrow.prototype.setMap = function(m) {
     this._map = m;
 }
 
-BoatArrow.prototype.setCenter = function(c) {
+YachtArrow.prototype.setCenter = function(c) {
     this.center = c;
     this.reconstruct();
 }
 
-BoatArrow.prototype.setBearing = function(b) {
+YachtArrow.prototype.setBearing = function(b) {
     this.bearing = b * (Math.PI/180.0);
     this.reconstruct();
 }
 
-BoatArrow.prototype.hide = function() {
+YachtArrow.prototype.hide = function() {
     if(this._o != null) this._o.setMap(null);
 }
 
-BoatArrow.prototype.show = function() {
+YachtArrow.prototype.show = function() {
     if(this._map != null) this._o.setMap(this._map);
 }
