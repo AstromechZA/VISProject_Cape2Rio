@@ -56,7 +56,8 @@ boatseries = [
         color: class_2_colour(0.5),
         marker: {
             enabled: false
-        }
+        },
+        lineWidth: 7
     },
     {
         name: 'Privateer',
@@ -64,15 +65,8 @@ boatseries = [
         color: class_1_colour(0.5),
         marker: {
             enabled: false
-        }
-    },
-    {
-        name: 'Scarlet Runner',
-        data: expand_daily_positions([2,2,3,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], marker_flag),
-        color: class_1_colour(1),
-        marker: {
-            enabled: false
-        }
+        },
+        lineWidth: 7
     },
     {
         name: 'Iskareen',
@@ -80,12 +74,13 @@ boatseries = [
         color: class_1_colour(0.5),
         marker: {
             enabled: false
-        }
+        },
+        lineWidth: 7
     },
     {
         name: 'Maserati',
         data: expand_daily_positions([1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2], marker_flag),
-        color: class_1_colour(0.5),
+        color: class_3_colour(1),
         marker: {
             enabled: false
         }
@@ -101,7 +96,16 @@ boatseries = [
     {
         name: 'Explora',
         data: expand_daily_positions([7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7], marker_cross),
-        color: class_2_colour(0.5),
+        color: class_3_colour(0.5),
+        marker: {
+            enabled: false
+        },
+        lineWidth: 7
+    },
+    {
+        name: 'Scarlet Runner',
+        data: expand_daily_positions([2,2,3,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], marker_flag),
+        color: class_1_colour(1),
         marker: {
             enabled: false
         }

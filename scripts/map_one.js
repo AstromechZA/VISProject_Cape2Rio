@@ -220,6 +220,8 @@ var boat_points = [
 
 var boat_circles = []
 
+var arrow;
+
 // main method
 var init = function _init() {
 
@@ -245,6 +247,11 @@ var init = function _init() {
         max: boat_points.length,
         slide: slider_slide
     });
+
+    arrow = new BoatArrow(mapOptions.center, Math.PI/4, 1, '#FF0000')
+    arrow.setMap(map)
+    arrow.show()
+
 }
 
 var build_circles = function _build_circles() {
@@ -261,10 +268,13 @@ var build_circles = function _build_circles() {
 }
 
 var slider_slide = function _slider_slide(event, ui) {
+    arrow.setBearing(ui.value*2);
     for (var i = 0; i < boat_circles.length; i++) {
         b = (i < ui.value)
         if (boat_circles[i].visible != b) boat_circles[i].setVisible(b)
     };
+
+
 }
 
 
