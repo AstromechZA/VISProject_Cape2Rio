@@ -2,6 +2,7 @@ var dataset = [
       {
         yacht_name: 'test boat',
         race_class: 1,
+        colour_string: '#FF0000',
         handicap: 1.213,
             points: [
                 [0, [-33.912276,18.399475], 0, 0],
@@ -658,6 +659,7 @@ var dataset = [
       {
         yacht_name: 'test boat 2',
         race_class: 1,
+        colour_string: '#0000FF',
         handicap: 1.13,
             points: [
                 [0, [-33.912276,18.399475], 0, 0],

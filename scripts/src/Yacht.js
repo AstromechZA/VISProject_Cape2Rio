@@ -3,7 +3,7 @@ var Yacht = function _Yacht(dataset) {
     this.yacht_name = dataset.yacht_name
     this.racing_class = dataset.race_class
     this.handicap = dataset.handicap
-    this.colour = '#FF0000'
+    this.colour = dataset.colour_string
     this._track = null
 }
 

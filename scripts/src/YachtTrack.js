@@ -13,7 +13,7 @@ var YachtTrack = function _YachtTrack(yacht, map) {
         var distance = temp[3]
         var marker = new google.maps.Circle({
             center: new google.maps.LatLng(temp[1][0], temp[1][1]),
-            radius: 4000 + distance * 500,
+            radius: 4000 + distance * 700,
             strokeWeight: 0,
             fillColor: yacht.colour,
             fillOpacity: 0.8,
