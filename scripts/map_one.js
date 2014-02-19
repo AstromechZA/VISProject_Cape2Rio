@@ -48,8 +48,13 @@ var init = function _init() {
 
 }
 
+var last_slide_time = 0
 var slider_slide = function _slider_slide(event, ui) {
-    for (var i = global_yachts.length - 1; i >= 0; i--) global_yachts[i].update(ui.value)
+    var now = Date.now()
+    if((now-last_slide_time)>30) {
+        for (var i = global_yachts.length - 1; i >= 0; i--) global_yachts[i].update(ui.value)
+        last_slide_time = now
+    }
 }
 
 $(init)
