@@ -10,9 +10,10 @@ var YachtTrack = function _YachtTrack(yacht, map) {
     for (var i = 0; i < pl; i++) {
         var temp = points[i]
         var time = temp[0]
+        var distance = temp[3]
         var marker = new google.maps.Circle({
             center: new google.maps.LatLng(temp[1][0], temp[1][1]),
-            radius: 5000,
+            radius: 4000 + distance * 500,
             strokeWeight: 0,
             fillColor: yacht.colour,
             fillOpacity: 0.8,
@@ -20,7 +21,7 @@ var YachtTrack = function _YachtTrack(yacht, map) {
             visible: false
         })
         var bearing = temp[2]
-        this.points.push([time, marker, bearing])
+        this.points.push([time, marker, bearing, distance])
     }
 
     // -----

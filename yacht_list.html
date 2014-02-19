@@ -383,6 +383,8 @@
               </tr>
             </tbody>
         </table>
+        <br />
+        <br />
         </div>
     </div>
     <script>
@@ -393,7 +395,7 @@
             return a.match(/alt="(.*?)"/)[1].toLowerCase()
         },
         'alt-status-asc': function(a,b) {
-            return ((a < b) ? -1 : ((a > b) ? 1 : 0));     
+            return ((a < b) ? -1 : ((a > b) ? 1 : 0));
         },
         'alt-status-desc': function(a,b) {
             return ((a < b) ? 1 : ((a > b) ? -1 : 0));
