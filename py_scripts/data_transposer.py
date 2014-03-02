@@ -128,7 +128,7 @@ for boat in boats:
             if data['days'][x]['status'] == 'FINISHED':
                 data['days'][x]['pos'] = [-22.933333333333334, -43.14333333333333]
 
-        for x in xrange(1,dc-1):
+        for x in xrange(1,dc):
             if data['days'][x]['status'] in ['FINISHED', 'RETIRED', 'DISQUALIFIED']:
                 data['days'][x]['last'] = True
                 break

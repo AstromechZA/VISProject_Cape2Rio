@@ -25,10 +25,12 @@ def distance_from_rio(p):
     return haversine(p[1], p[0], -43.14333333333333, -22.933333333333334)
 
 thisdir = os.path.abspath(os.path.dirname(__file__))
-datadir = os.path.join(thisdir, '..', 'data', 'dailies')
-inputdir = os.path.join(datadir, 'perboat')
+datadir = os.path.join(thisdir, '..', 'data')
+inputdir = os.path.join(datadir, 'dailies', 'perboat')
 
 perboatfiles = filter(lambda f: os.path.isfile(os.path.join(inputdir, f)), os.listdir(inputdir))
+
+tccs = json.loads(open(os.path.join(datadir, 'tcc.json')).read())
 
 days = 28
 boatcount = 35
@@ -37,23 +39,42 @@ day_seriess = {}
 for x in xrange(0,days+1):
     day_seriess[x] = []
 
-print day_seriess
-
 for boat_file in perboatfiles:
     f = open(os.path.join(inputdir, boat_file))
     data = json.loads(f.read())
 
     i = 0
     for p in data['days']:
-        day_seriess[i] += [{'boat': data['name'], 'dist': distance_from_rio(p['pos']), 'status': p['status']}]
-        if 'last' in p.keys():
-            break
+        lst = ('last' in p.keys())
+        day_seriess[i] += [{'boat': data['name'], 'dist': tccs[data['name']] * distance_from_rio(p['pos']), 'status': p['status'], 'last': lst}]
         i+=1
 
+time_stuff = json.loads(open(os.path.join(datadir, 'times.json')).read())
 
 for x in xrange(0,days+1):
+    day_seriess[x].sort(key=lambda x: time_stuff[x['boat']]['final'] if x['boat'] in time_stuff else 999999999)
     day_seriess[x].sort(key=lambda x:x['dist'])
-    print day_seriess[x]
 
-#print day_seriess
+
+position_series = {}
+
+done = set()
+
+for day in xrange(0,days+1):
+    pos = 0
+    for e in day_seriess[day]:
+        pos += 1
+        boat = e['boat']
+
+        if not boat in position_series.keys():
+            position_series[boat] = {'points': [], 'result': e['status']}
+
+        if not boat in done:
+            position_series[boat]['points'] += [pos]
+
+        if e['last']:
+            position_series[boat]['result'] = e['status']
+            done.add(boat)
+
+print json.dumps(position_series)
 
