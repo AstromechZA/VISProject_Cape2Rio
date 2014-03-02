@@ -52,7 +52,7 @@ var expand_daily_positions = function _expand_daily_positions(position_array, en
 var yachtseries = [
     {
     name: 'Investec Ciao Bella',
-    data: expand_daily_positions([16, 16, 20, 9, 5, 5, 3, 5, 4, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 5], marker_flag),
+    data: expand_daily_positions([16, 16, 20, 9, 5, 5, 3, 5, 4, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 5, 5, 5, 5, 5, 5], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -60,7 +60,7 @@ var yachtseries = [
 },
 {
     name: 'HQ2',
-    data: expand_daily_positions([33, 33, 33, 34, 35, 35, 33, 34, 29, 28, 26, 25, 25, 23, 23, 22, 22, 22, 22, 21, 18, 13, 13, 12, 12, 13, 13], marker_flag),
+    data: expand_daily_positions([33, 33, 33, 34, 35, 35, 33, 34, 29, 28, 26, 25, 25, 23, 23, 22, 22, 22, 22, 21, 18, 13, 13, 12, 12, 13, 13, 17, 21], marker_flag),
     color: class_3_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -68,7 +68,7 @@ var yachtseries = [
 },
 {
     name: 'YOLO',
-    data: expand_daily_positions([8, 8, 15, 5, 2, 1, 1, 2, 5, 6, 8, 8, 8, 9, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 7], marker_flag),
+    data: expand_daily_positions([8, 8, 15, 5, 2, 1, 1, 2, 5, 6, 8, 8, 8, 9, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 7, 7, 7, 7], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -76,7 +76,7 @@ var yachtseries = [
 },
 {
     name: 'Black Cat',
-    data: expand_daily_positions([19, 18, 24], marker_cross),
+    data: expand_daily_positions([19, 18, 24, 24, 25, 31, 30, 31, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32], marker_cross),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -84,7 +84,7 @@ var yachtseries = [
 },
 {
     name: 'FTI Flyer',
-    data: expand_daily_positions([5, 6, 14], marker_cross),
+    data: expand_daily_positions([5, 6, 14, 10, 15, 21, 23, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29], marker_cross),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -92,7 +92,7 @@ var yachtseries = [
 },
 {
     name: 'Avanti',
-    data: expand_daily_positions([10, 10, 21], marker_cross),
+    data: expand_daily_positions([10, 10, 21, 18, 21, 25, 28, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], marker_cross),
     color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -100,7 +100,7 @@ var yachtseries = [
 },
 {
     name: 'Rocket/Stop Rhino Poaching',
-    data: expand_daily_positions([30, 30, 9, 30, 28, 26, 34, 22, 19, 17, 14, 16, 15, 14, 10, 8, 7, 7, 7, 6, 6, 6, 6], marker_flag),
+    data: expand_daily_positions([30, 30, 9, 30, 28, 26, 34, 22, 19, 17, 14, 16, 15, 14, 10, 8, 7, 7, 7, 6, 6, 6, 6, 8, 9, 10, 10, 10, 11], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -108,7 +108,7 @@ var yachtseries = [
 },
 {
     name: 'Privateer',
-    data: expand_daily_positions([31, 31, 32, 31, 26, 22, 20, 11, 9, 8, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4], marker_flag),
+    data: expand_daily_positions([31, 31, 32, 31, 26, 22, 20, 11, 9, 8, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -116,7 +116,7 @@ var yachtseries = [
 },
 {
     name: 'Nomad Yacht Charters',
-    data: expand_daily_positions([28, 29, 8, 27, 27, 28, 26, 23, 21, 19, 19, 19, 19, 19, 19, 16, 14, 13, 11, 11, 11, 10, 11, 9, 11], marker_flag),
+    data: expand_daily_positions([28, 29, 8, 27, 27, 28, 26, 23, 21, 19, 19, 19, 19, 19, 19, 16, 14, 13, 11, 11, 11, 10, 11, 9, 11, 12, 12, 15, 16], marker_flag),
     color: class_3_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -124,7 +124,7 @@ var yachtseries = [
 },
 {
     name: 'Tulliana',
-    data: expand_daily_positions([26, 26, 29, 21, 20, 20, 17, 16, 14, 15, 20, 12, 12, 11, 12, 12, 11, 10, 10, 10, 10, 11, 10, 11, 10], marker_flag),
+    data: expand_daily_positions([26, 26, 29, 21, 20, 20, 17, 16, 14, 15, 20, 12, 12, 11, 12, 12, 11, 10, 10, 10, 10, 11, 10, 11, 10, 11, 11, 13, 14], marker_flag),
     color: class_3_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -132,7 +132,7 @@ var yachtseries = [
 },
 {
     name: 'Myrtle Of Bonnievale',
-    data: expand_daily_positions([7, 7, 16, 7, 7, 6, 6, 6, 7, 10, 10, 10, 10, 10, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 15, 17, 18, 11], marker_flag),
+    data: expand_daily_positions([7, 7, 16, 7, 7, 6, 6, 6, 7, 10, 10, 10, 10, 10, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 15, 17, 18, 11, 12], marker_flag),
     color: class_3_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -148,7 +148,7 @@ var yachtseries = [
 },
 {
     name: 'DoDo',
-    data: expand_daily_positions([2, 2, 13, 6], marker_cross),
+    data: expand_daily_positions([2, 2, 13, 6, 10, 16, 22, 26, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28], marker_cross),
     color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -164,7 +164,7 @@ var yachtseries = [
 },
 {
     name: 'Windgat',
-    data: expand_daily_positions([20, 20, 23, 17, 17, 13, 18, 19, 20, 20, 18, 18, 17, 17, 16, 17, 17, 19, 17, 18, 17, 18, 17, 16, 14, 14, 14, 16], marker_flag),
+    data: expand_daily_positions([20, 20, 23, 17, 17, 13, 18, 19, 20, 20, 18, 18, 17, 17, 16, 17, 17, 19, 17, 18, 17, 18, 17, 16, 14, 14, 14, 16, 18], marker_flag),
     color: class_3_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -172,7 +172,7 @@ var yachtseries = [
 },
 {
     name: 'Scarlet Runner',
-    data: expand_daily_positions([32, 32, 10, 28, 22, 18, 9, 4, 2, 2, 2, 2, 2, 2, 2, 2], marker_flag),
+    data: expand_daily_positions([32, 32, 10, 28, 22, 18, 9, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -180,7 +180,7 @@ var yachtseries = [
 },
 {
     name: 'Vulcan 44',
-    data: expand_daily_positions([15, 15, 18, 11, 9, 8, 7, 10, 15, 16, 13, 15, 18, 16, 18, 19, 20, 16, 18, 17, 19, 20, 18, 18, 18, 18, 17, 14], marker_flag),
+    data: expand_daily_positions([15, 15, 18, 11, 9, 8, 7, 10, 15, 16, 13, 15, 18, 16, 18, 19, 20, 16, 18, 17, 19, 20, 18, 18, 18, 18, 17, 14, 15], marker_flag),
     color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -188,7 +188,7 @@ var yachtseries = [
 },
 {
     name: 'Amtec Wits Aladdin',
-    data: expand_daily_positions([17, 17, 4, 15, 13, 15, 10, 13, 12, 11, 9, 9, 9, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9, 10, 6], marker_flag),
+    data: expand_daily_positions([17, 17, 4, 15, 13, 15, 10, 13, 12, 11, 9, 9, 9, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9, 10, 6, 6, 6, 6, 6], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -196,7 +196,7 @@ var yachtseries = [
 },
 {
     name: 'Cool Runnings',
-    data: expand_daily_positions([13, 13, 6, 13, 12, 9, 12, 12, 13, 14, 16, 17, 16, 18, 17, 18, 18, 17, 16, 16, 15, 17, 16, 17, 17, 15, 15, 12], marker_flag),
+    data: expand_daily_positions([13, 13, 6, 13, 12, 9, 12, 12, 13, 14, 16, 17, 16, 18, 17, 18, 18, 17, 16, 16, 15, 17, 16, 17, 17, 15, 15, 12, 13], marker_flag),
     color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -204,7 +204,7 @@ var yachtseries = [
 },
 {
     name: 'Bille',
-    data: expand_daily_positions([21, 21, 26], marker_cross),
+    data: expand_daily_positions([21, 21, 26, 25, 30, 32, 31, 32, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33], marker_cross),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -220,7 +220,7 @@ var yachtseries = [
 },
 {
     name: 'Isla',
-    data: expand_daily_positions([22, 22, 27], marker_cross),
+    data: expand_daily_positions([22, 22, 27, 26, 31, 33, 32, 33, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34], marker_cross),
     color: class_3_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -236,7 +236,7 @@ var yachtseries = [
 },
 {
     name: 'Maserati',
-    data: expand_daily_positions([35, 35, 35, 35, 32, 24, 8, 1, 1, 1, 1, 1], marker_flag),
+    data: expand_daily_positions([35, 35, 35, 35, 32, 24, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -244,7 +244,7 @@ var yachtseries = [
 },
 {
     name: 'Avocet',
-    data: expand_daily_positions([24, 25, 31], marker_cross),
+    data: expand_daily_positions([24, 25, 31, 32, 33, 34, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35, 35], marker_cross),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -252,7 +252,7 @@ var yachtseries = [
 },
 {
     name: 'Iskareen',
-    data: expand_daily_positions([27, 27, 30, 20, 18, 14, 11, 9, 6, 7, 4, 4, 5, 5, 5, 5, 5, 5, 5, 3], marker_flag),
+    data: expand_daily_positions([27, 27, 30, 20, 18, 14, 11, 9, 6, 7, 4, 4, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -276,7 +276,7 @@ var yachtseries = [
 },
 {
     name: 'Indaba',
-    data: expand_daily_positions([4, 4, 12, 4], marker_cross),
+    data: expand_daily_positions([4, 4, 12, 4, 8, 11, 21, 24, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27], marker_cross),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -284,7 +284,7 @@ var yachtseries = [
 },
 {
     name: 'Mussulo III',
-    data: expand_daily_positions([25, 24, 28, 22, 19, 17, 13, 18, 16, 13, 15, 14, 13, 12, 11, 10, 9, 9, 9, 8, 8, 8, 8, 6], marker_flag),
+    data: expand_daily_positions([25, 24, 28, 22, 19, 17, 13, 18, 16, 13, 15, 14, 13, 12, 11, 10, 9, 9, 9, 8, 8, 8, 8, 6, 7, 8, 8, 8, 9], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -292,7 +292,7 @@ var yachtseries = [
 },
 {
     name: 'Peekay',
-    data: expand_daily_positions([11, 11, 22, 19], marker_cross),
+    data: expand_daily_positions([11, 11, 22, 19, 24, 27, 29, 30, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31], marker_cross),
     color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -300,7 +300,7 @@ var yachtseries = [
 },
 {
     name: 'Explora',
-    data: expand_daily_positions([34, 34, 34, 33, 34, 30, 24, 14, 10, 5, 3, 3, 3, 3, 3, 3, 3, 3], marker_flag),
+    data: expand_daily_positions([34, 34, 34, 33, 34, 30, 24, 14, 10, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 5, 5, 7, 8, 9, 9, 9, 10], marker_flag),
     color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
@@ -324,12 +324,12 @@ var yachtseries = [
 },
 {
     name: 'Ava',
-    data: expand_daily_positions([1, 1, 11, 2], marker_cross),
+    data: expand_daily_positions([1, 1, 11, 2, 4, 7, 16, 21, 24, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26], marker_cross),
     color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 7,
     dashstyle: 'shortdash'
-}
+},
 ];
 
 

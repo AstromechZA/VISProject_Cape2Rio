@@ -30,7 +30,7 @@ inputdir = os.path.join(datadir, 'dailies', 'perboat')
 
 perboatfiles = filter(lambda f: os.path.isfile(os.path.join(inputdir, f)), os.listdir(inputdir))
 
-tccs = json.loads(open(os.path.join(datadir, 'tcc.json')).read())
+boatdata = json.loads(open(os.path.join(datadir, 'boats.json')).read())
 
 days = 28
 boatcount = 35
@@ -46,7 +46,7 @@ for boat_file in perboatfiles:
     i = 0
     for p in data['days']:
         lst = ('last' in p.keys())
-        day_seriess[i] += [{'boat': data['name'], 'dist': tccs[data['name']] * distance_from_rio(p['pos']), 'status': p['status'], 'last': lst}]
+        day_seriess[i] += [{'boat': data['name'], 'dist': boatdata[data['name']]['tcc'] * distance_from_rio(p['pos']), 'status': p['status'], 'last': lst}]
         i+=1
 
 time_stuff = json.loads(open(os.path.join(datadir, 'times.json')).read())
@@ -74,7 +74,6 @@ for day in xrange(0,days+1):
 
         if e['last']:
             position_series[boat]['result'] = e['status']
-            done.add(boat)
 
 print json.dumps(position_series)
 
