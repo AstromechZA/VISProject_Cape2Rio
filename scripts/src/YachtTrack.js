@@ -18,7 +18,7 @@ var YachtTrack = function _YachtTrack(yacht, map) {
             fillColor: yacht.colour,
             fillOpacity: 0.8,
             map: map,
-            visible: false
+            visible: true
         })
         var bearing = temp[2]
         this.points.push([time, marker, bearing, distance])
@@ -27,7 +27,7 @@ var YachtTrack = function _YachtTrack(yacht, map) {
     // -----
     this.points[0][1].setVisible(true)
 
-    this.arrow = new YachtArrow(this.points[0][1].center, this.points[0][2], 0.7, yacht.colour)
+    this.arrow = new YachtArrow(this.points[this.points.length-1][1].center, this.points[this.points.length-1][2], 0.7, yacht.colour)
     this.arrow.setMap(map)
     this.arrow.show()
 }
@@ -42,9 +42,7 @@ YachtTrack.prototype.setProgress = function(time) {
         if(b) last = p
     };
 
-    this.arrow.hide()
     this.arrow.setCenter(last[1].center)
     this.arrow.setBearing(last[2])
-    this.arrow.show()
 
 }

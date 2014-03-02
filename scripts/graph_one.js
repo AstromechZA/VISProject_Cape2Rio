@@ -49,7 +49,7 @@ var expand_daily_positions = function _expand_daily_positions(position_array, en
 }
 
 // yacht series hash
-yachtseries = [
+var yachtseries = [
     {
         name: 'Investec Ciao Bella',
         data: expand_daily_positions([5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6], marker_flag),
@@ -57,7 +57,9 @@ yachtseries = [
         marker: {
             enabled: false
         },
-        lineWidth: 7
+        lineWidth: 7,
+        dashStyle: 'shortdash',
+        yachtType: 'Monohull'
     },
     {
         name: 'Privateer',
@@ -66,7 +68,9 @@ yachtseries = [
         marker: {
             enabled: false
         },
-        lineWidth: 7
+        lineWidth: 7,
+        dashStyle: 'shortdash',
+        yachtType: 'Monohull'
     },
     {
         name: 'Iskareen',
@@ -75,7 +79,9 @@ yachtseries = [
         marker: {
             enabled: false
         },
-        lineWidth: 7
+        lineWidth: 7,
+        dashStyle: 'shortdash',
+        yachtType: 'Monohull'
     },
     {
         name: 'Maserati',
@@ -83,7 +89,8 @@ yachtseries = [
         color: class_3_colour(1),
         marker: {
             enabled: false
-        }
+        },
+        yachtType: 'Monohull'
     },
     {
         name: 'Mussulo III',
@@ -91,7 +98,8 @@ yachtseries = [
         color: class_2_colour(1),
         marker: {
             enabled: false
-        }
+        },
+        yachtType: 'Monohull'
     },
     {
         name: 'Explora',
@@ -100,7 +108,9 @@ yachtseries = [
         marker: {
             enabled: false
         },
-        lineWidth: 7
+        lineWidth: 7,
+        dashStyle: 'shortdash',
+        yachtType: 'Monohull'
     },
     {
         name: 'Scarlet Runner',
@@ -108,7 +118,8 @@ yachtseries = [
         color: class_1_colour(1),
         marker: {
             enabled: false
-        }
+        },
+        yachtType: 'Monohull'
     }
 ];
 
@@ -116,15 +127,18 @@ yachtseries = [
 // modify graph container to fit height
 $('#container').css('height', yachtseries.length * 23 + 100);
 
-// build chart
-$(function () {
-    $('#container').highcharts({
+var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container'
+        },
         title: {
             text: 'Daily race position'
         },
         xAxis: {
             categories: day_labels(27),
-            opposite: true
+            opposite: true,
+            min: 0,
+            max: (27*3)
         },
         yAxis: [{
             title: false,
@@ -184,24 +198,19 @@ $(function () {
                     }
                 },
                 enableMouseTracking: true,
-                lineWidth: 10 ,
-                // events: {
-                //     mouseOver: function() {
-                //         $('.highcharts-series').each(function(){$(this).attr('opacity',0.7)});
-                //         this.group.toFront();
-                //         $(this.group.element).attr('opacity',1.0)
-                //     }
-                // }
-
+                lineWidth: 10 
             }
         },
         tooltip: {
             formatter: function() {
-                    return '<b>'+ this.series.name +'</b>';
-            }
+                    return this.series.name + ' - <b>' + position_string(this.y) + '</b><br><em>' + this.series.options.yachtType +'</em>';
+            },
+            crosshairs: true
         },
         legend: false,
         series: yachtseries
     });
+
+$(function () {
     $('.highcharts-container svg text:last').remove();
 });

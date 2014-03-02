@@ -16,13 +16,47 @@ global_rhumbline_path = new google.maps.Polyline({
     strokeWeight: 1
 });
 
+$.widget("app.slider", $.ui.slider, {
+
+    options: {
+        ticks: false
+    },
+
+    _create: function(){    
+        this._super();
+        if (!this.options.ticks || this.options.step < 5){
+            return;
+        }
+
+        var cnt = this.options.min + this.options.step,
+            background = this.element.css( "border-color" ),
+            left;
+
+        while ( cnt < this.options.max ) {
+            
+            // Compute the "left" CSS property for the next tick mark.
+            left = ( cnt / this.options.max * 100 ).toFixed( 2 ) + "%";
+            console.log(left);
+
+            // Creates the tick div, and adds it to the element. It adds the
+            // "ui-slider-tick" class, which has common properties for each tick.
+            // It also applies the computed CSS properties, "left" and "background".
+            $( "<div/>" ).addClass( "ui-slider-tick" )
+                         .appendTo( this.element )
+                         .css( { left: left, background: background } );
+
+            cnt += this.options.step;
+        }
+    }
+});
+
 // main method
 var init = function _init() {
 
     // create map
     global_map = new google.maps.Map($('#map-canvas')[0], {
         zoom: 4,
-        center: new google.maps.LatLng(-22, -22),
+        center: new google.maps.LatLng(-28.767659, -14.779358),
         disableDefaultUI: true,
         minZoom: 4,
         maxZoom: 10
@@ -31,12 +65,18 @@ var init = function _init() {
     // add rhumbline
     global_rhumbline_path.setMap(global_map);
 
-    // activate slider
-    $("#slider").slider({
-        min: 0,
-        max: 28*24,
-        slide: slider_slide
-    });
+
+
+        // activate slider
+        $("#slider").slider({
+            min: 0,
+            max: 28*24,
+            slide: slider_slide,
+            step: 24,
+            ticks: true,
+            value: 28*24
+        });
+    
 
     global_yachts = []
 
@@ -45,16 +85,18 @@ var init = function _init() {
         b.add_track_to_map(global_map)
         global_yachts.push(b)
     }
-
 }
 
-var last_slide_time = 0
 var slider_slide = function _slider_slide(event, ui) {
-    var now = Date.now()
-    if((now-last_slide_time)>30) {
+        var day = Math.floor(ui.value / 24)
+        update_position_graph(day)
         for (var i = global_yachts.length - 1; i >= 0; i--) global_yachts[i].update(ui.value)
-        last_slide_time = now
-    }
+}
+
+var update_position_graph = function(day) {
+    var num_series = chart.series.length;
+    for(var i=0; i < num_series; i++) chart.series[i].setData(yachtseries[i].data.slice(0, day*3), false);
+    chart.redraw();
 }
 
 $(init)

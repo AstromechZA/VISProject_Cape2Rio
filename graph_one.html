@@ -11,6 +11,14 @@
   <link href="styles/bootstrap-theme.min.css" rel="stylesheet">
   <link href="styles/custom.css" rel="stylesheet">
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <style>
+.ui-slider-tick {
+    position: absolute;
+    width: 1px;
+    height: 18px;
+    z-index: -1;
+}
+  </style>
 
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -69,17 +77,21 @@
             <h2>
                 Interim position graph
             </h2>
-            <p>
+              <div id="map-canvas" style="height: 400px; width: 867px; margin-left: 132px;"></div>
 
-
-                <div id="container" style="min-width: 310px; height: 820px; margin: 0 auto"></div>
-
-
-            </p>
+              <div id="slider" style="width: 867px; margin-left: 132px;"></div>
+              <div id="container" style="min-width: 310px; height: 820px; margin: auto; margin-top: 10px;"></div>
         </div>
     </div>
 
     <script type="text/javascript" src="scripts/graph_one.js"></script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvdl3zKTMzHIT7NGW97Lv3S8dPbt36pQA&sensor=false"></script>
+    <script type="text/javascript" src="scripts/src/Yacht.js"></script>
+    <script type="text/javascript" src="scripts/src/YachtTrack.js"></script>
+    <script type="text/javascript" src="scripts/src/YachtArrow.js"></script>
+    <script type="text/javascript" src="scripts/data/dataset1.js"></script>   
+    <script type="text/javascript" src="scripts/map_one.js"></script>
 </div>
 </body>
 </html>
