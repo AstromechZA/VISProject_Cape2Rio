@@ -116,11 +116,12 @@ for boat in boats:
 
         data['days'] = map(lambda s: s if s else {'status': 'NO REPORT'}, data['days'])
 
-        for x in xrange(1,dc-1):
+        for x in xrange(1,dc):
             if data['days'][x]['status'] == 'NO REPORT':
                 if data['days'][x-1]['status'] == 'RACING' and data['days'][x+1]['status'] == 'RACING':
                     data['days'][x]['pos'] = haversine_midpoint_p(data['days'][x-1]['pos'], data['days'][x+1]['pos'])
                     data['days'][x]['status'] = 'RACING'
+
             if not 'pos' in data['days'][x]:
                 data['days'][x]['pos'] = data['days'][x-1]['pos']
 
