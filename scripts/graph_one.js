@@ -12,24 +12,15 @@ var marker_cross = function _marker_cross(y) {
 
 // Colour creation function
 var class_1_colour = function _class_1_colour(o) {
-    if(o != 1) {
-        return 'rgba(187, 218, 150, 1)'
-    }
-    return 'rgba(120, 183, 47, 1)'
+    return 'rgba(120, 183, 47, '+o+')'
 }
 
 var class_2_colour = function _class_2_colour(o) {
-    if(o != 1) {
-        return 'rgba(218, 150, 150, 1)'
-    }
-    return 'rgba(183, 47, 47, 1)'
+    return 'rgba(183, 47, 47, '+o')'
 }
 
 var class_3_colour = function _class_3_colour(o) {
-    if(o != 1){
-        return 'rgba(150, 170, 218, 1)'
-    }
-    return 'rgba(47, 87, 183, 1)'
+    return 'rgba(47, 87, 183, '+o+')'
 }
 
 // day label creator
@@ -59,7 +50,7 @@ var expand_daily_positions = function _expand_daily_positions(position_array, en
 
 // yacht series hash
 var yachtseries = [
-    {
+{
     name: 'Investec Ciao Bella',
     data: expand_daily_positions([16, 16, 20, 9, 5, 5, 3, 5, 4, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 5, 5, 5, 5, 5, 5], marker_flag, 23),
     color: class_1_colour(0.5),
@@ -80,7 +71,7 @@ var yachtseries = [
 {
     name: 'YOLO',
     data: expand_daily_positions([8, 8, 15, 5, 2, 1, 1, 2, 5, 6, 8, 8, 8, 9, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 7, 7, 7, 7], marker_flag, 25),
-    color: class_1_colour(0.5),
+    color: class_2_colour(1),
     marker: {enabled: false},
     lineWidth: 5,
     dashstyle: 'solid',
@@ -98,7 +89,7 @@ var yachtseries = [
 {
     name: 'FTI Flyer',
     data: expand_daily_positions([5, 6, 14], marker_cross, 2),
-    color: class_1_colour(0.5),
+    color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 5,
     dashstyle: 'solid',
@@ -152,7 +143,7 @@ var yachtseries = [
 {
     name: 'Myrtle Of Bonnievale',
     data: expand_daily_positions([7, 7, 16, 7, 7, 6, 6, 6, 7, 10, 10, 10, 10, 10, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 15, 17, 18, 11, 12], marker_flag, 27),
-    color: class_3_colour(0.5),
+    color: class_3_colour(1),
     marker: {enabled: false},
     lineWidth: 5,
     dashstyle: 'solid',
@@ -179,7 +170,7 @@ var yachtseries = [
 {
     name: 'Perie Baniu Rolly Tasker',
     data: expand_daily_positions([3, 3, 2, 3, 1, 2, 2, 3, 3, 4, 7, 7, 7, 8, 8, 11, 12, 12, 13, 13, 13, 16, 15, 15, 16, 16, 16, 18, 8], marker_flag, 28),
-    color: class_1_colour(0.5),
+    color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 5,
     dashstyle: 'solid',
@@ -242,7 +233,7 @@ var yachtseries = [
 {
     name: 'INSV Mhadei',
     data: expand_daily_positions([29, 28, 7, 29, 29, 29, 27, 27, 25, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 22, 23, 23, 23, 22, 21, 19, 20], marker_flag, 28),
-    color: class_2_colour(0.5),
+    color: class_1_colour(0.5),
     marker: {enabled: false},
     lineWidth: 5,
     dashstyle: 'solid',
@@ -269,7 +260,7 @@ var yachtseries = [
 {
     name: 'Maserati',
     data: expand_daily_positions([35, 35, 35, 35, 32, 24, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], marker_flag, 11),
-    color: class_1_colour(0.5),
+    color: class_1_colour(1),
     marker: {enabled: false},
     lineWidth: 5,
     dashstyle: 'solid',
@@ -314,7 +305,7 @@ var yachtseries = [
 {
     name: 'Indaba',
     data: expand_daily_positions([4, 4, 12, 4], marker_cross, 3),
-    color: class_1_colour(0.5),
+    color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 5,
     dashstyle: 'solid',
@@ -350,7 +341,7 @@ var yachtseries = [
 {
     name: 'Jacaranda Of Carrick',
     data: expand_daily_positions([12, 12, 19, 12, 11, 10, 14, 15, 17, 18, 17, 20, 21, 20, 20, 21, 21, 21, 21, 22, 22, 21, 22, 21, 20, 19, 19, 20, 17], marker_flag, 28),
-    color: class_1_colour(0.5),
+    color: class_2_colour(0.5),
     marker: {enabled: false},
     lineWidth: 5,
     dashstyle: 'solid',
@@ -373,7 +364,7 @@ var yachtseries = [
     lineWidth: 5,
     dashstyle: 'solid',
     yachtType: ''
-},
+}
 
 ];
 
@@ -458,6 +449,14 @@ var chart = new Highcharts.Chart({
                     hover: {
                         lineWidth: 11
                     }
+                },
+                events: {
+                    mouseOver: function() {
+                        this.graph.toFront()
+
+                    },
+                    mouseOut: function() {
+                    }
                 }
             }
         },
@@ -538,11 +537,4 @@ $(function () {
         enableRedraw();
     })
 
-    // $('#button1').click(function(){
-    //     for(var i = 0; i < chart.series.length; i++){
-    //         if(yachtseries[i].color == 'rgba(187, 218, 150, 1)'){
-    //             chart.series[i].hide();
-    //         }
-    //     }
-    // })
 });
