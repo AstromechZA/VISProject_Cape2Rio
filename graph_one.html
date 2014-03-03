@@ -12,127 +12,141 @@
   <link href="styles/custom.css" rel="stylesheet">
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <style>
-.ui-slider-tick {
-    position: absolute;
-    width: 1px;
-    height: 18px;
-    z-index: -1;
-}
+    .ui-slider-tick {
+      position: absolute;
+      width: 1px;
+      height: 18px;
+      z-index: -1;
+    }
   </style>
 
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
     <script src="scripts/html5shiv.js"></script>
-  <![endif]-->
+    <![endif]-->
 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
-  <script type="text/javascript" src="scripts/lib/bootstrap.min.js"></script>
-</head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="scripts/lib/bootstrap.min.js"></script>
+  </head>
 
-<body>
-<nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">
+          </button>
+          <a class="navbar-brand" href="index.html">
             <p>Cape To Rio 2014</p>
-                <small><i>&nbsp;&nbsp;A visualisation</i></small>
-        </a>
-    </div>
+            <small><i>&nbsp;&nbsp;A visualisation</i></small>
+          </a>
+        </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
             <li>
-                <a href="index.html">Home</a>
+              <a href="index.html">Home</a>
             </li>
             <li>
-                <a href="yacht_list.html">Yachts</a>
+              <a href="yacht_list.html">Yachts</a>
             </li>
             <li class="dropdown">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Graphics<strong class="caret"></strong></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="map_one.html">Race Map</a>
-                    </li>
-                    <li class="active">
-                        <a href="graph_one.html">Daily Leaders</a>
-                    </li>
-                </ul>
-            </li>
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Graphics<strong class="caret"></strong></a>
+             <ul class="dropdown-menu">
+              <li>
+                <a href="map_one.html">Race Map</a>
+              </li>
+              <li class="active">
+                <a href="graph_one.html">Daily Leaders</a>
+              </li>
+            </ul>
+          </li>
         </ul>
+      </div>
     </div>
-    </div>
-</nav>
-<div class="container">
+  </nav>
+  <div class="container">
     <div class="row clearfix">
-        <div class="col-md-12 column">
-            <h2>
-                Interim position graph
-            </h2>
-            <div id="map-canvas" style="height: 400px; width: 867px; margin-left: 132px;"></div>
-
-            <div id="slider" style="width: 867px; margin-left: 132px;"></div>
-            <div style="width: 867px; margin-left:132px; margin-top:7px">
-              <div class="slider_tick_label_space">&nbsp;</div>
-              <div class="slider_tick_label">1</div>
-              <div class="slider_tick_label">2</div>
-              <div class="slider_tick_label">3</div>
-              <div class="slider_tick_label">4</div>
-              <div class="slider_tick_label">5</div>
-              <div class="slider_tick_label">6</div>
-              <div class="slider_tick_label">7</div>
-              <div class="slider_tick_label">8</div>
-              <div class="slider_tick_label">9</div>
-              <div class="slider_tick_label">10</div>
-              <div class="slider_tick_label">11</div>
-              <div class="slider_tick_label">12</div>
-              <div class="slider_tick_label">13</div>
-              <div class="slider_tick_label">14</div>
-              <div class="slider_tick_label">15</div>
-              <div class="slider_tick_label">16</div>
-              <div class="slider_tick_label">17</div>
-              <div class="slider_tick_label">18</div>
-              <div class="slider_tick_label">19</div>
-              <div class="slider_tick_label">20</div>
-              <div class="slider_tick_label">21</div>
-              <div class="slider_tick_label">22</div>
-              <div class="slider_tick_label">23</div>
-              <div class="slider_tick_label">24</div>
-              <div class="slider_tick_label">25</div>
-              <div class="slider_tick_label">26</div>
-              <div class="slider_tick_label">27</div>
-              <div class="slider_tick_label">28</div>
-            </div>
-
-
-            <nav class="navbar navbar-default" role="navigation" style="margin-top:40px;">
-              <div class="navbar-form">
-              <div id="toggle_btn_group" class="btn-group" data-toggle="buttons">
-                <label id="class_1_btn" class="btn btn-sm btn-success">
-                  <input type="checkbox"> Racing
-                </label>
-                <label id="class_2_btn" class="btn btn-sm btn-danger">
-                  <input type="checkbox"> Cruising
-                </label>
-                <label id="class_3_btn" class="btn btn-sm btn-primary">
-                  <input type="checkbox"> Multihull
-                </label>
-              </div>
-              </div>
-            </nav>
-
-            <div id="container" style="min-width: 310px; height: 820px; margin: auto; margin-top: 10px;"></div>
-
-
+      <div class="col-md-12 column">
+        <div style="margin-left: 177px;">
+          <h2>
+            Interim position graph
+          </h2>
         </div>
+        <div id="map_wrapper">
+          <div id="map-canvas" style="height: 400px; width: 867px;float:left"></div>
+
+          <div id="slider" style="width: 867px; float:left"></div>
+          <div style="width: 867px; margin-top:7px; float:left">
+            <div class="slider_tick_label_space">&nbsp;</div>
+            <div class="slider_tick_label">1</div>
+            <div class="slider_tick_label">2</div>
+            <div class="slider_tick_label">3</div>
+            <div class="slider_tick_label">4</div>
+            <div class="slider_tick_label">5</div>
+            <div class="slider_tick_label">6</div>
+            <div class="slider_tick_label">7</div>
+            <div class="slider_tick_label">8</div>
+            <div class="slider_tick_label">9</div>
+            <div class="slider_tick_label">10</div>
+            <div class="slider_tick_label">11</div>
+            <div class="slider_tick_label">12</div>
+            <div class="slider_tick_label">13</div>
+            <div class="slider_tick_label">14</div>
+            <div class="slider_tick_label">15</div>
+            <div class="slider_tick_label">16</div>
+            <div class="slider_tick_label">17</div>
+            <div class="slider_tick_label">18</div>
+            <div class="slider_tick_label">19</div>
+            <div class="slider_tick_label">20</div>
+            <div class="slider_tick_label">21</div>
+            <div class="slider_tick_label">22</div>
+            <div class="slider_tick_label">23</div>
+            <div class="slider_tick_label">24</div>
+            <div class="slider_tick_label">25</div>
+            <div class="slider_tick_label">26</div>
+            <div class="slider_tick_label">27</div>
+            <div class="slider_tick_label">28</div>
+          </div>
+          <div id="map-canvas-key" style="float: right; width: 190px; height: 120px; margin-top: 0px; border: 1px solid #333; -moz-border-radius: 10px; border-radius: 10px; text-align: center; padding-top:10px; font-size: 12pt;">
+            <b>Course Key:</b>
+            <img src="images/Course Velocity.png" alt="course velocity key">
+          </div>
+          <div id="daily-position-graph-key" style="float: right; width:190px; height: 230px; margin-top: 50px; border: 1px solid #333; -moz-border-radius: 10px; border-radius: 10px; text-align: center; padding-top:10px; font-size: 12pt;">
+            <div style="width=100%;"><b>Position Key:</b></div>
+            <img src="images/Symbol Key.png" width="184" height="184" alt="course velocity key">
+          </div>
+          <div class='clearfix'></div>
+        </div>
+
+
+
+        <nav class="navbar navbar-default" role="navigation" style="margin-top:40px;">
+          <div class="navbar-form">
+            <div id="toggle_btn_group" class="btn-group" data-toggle="buttons">
+              <label id="class_1_btn" class="btn btn-sm btn-success">
+                <input type="checkbox"> Racing
+              </label>
+              <label id="class_2_btn" class="btn btn-sm btn-danger">
+                <input type="checkbox"> Cruising
+              </label>
+              <label id="class_3_btn" class="btn btn-sm btn-primary">
+                <input type="checkbox"> Multihull
+              </label>
+            </div>
+          </div>
+        </nav>
+
+        <div id="container" style="min-width: 310px; height: 820px; margin: auto; margin-top: 10px;"></div>
+
+
+      </div>
     </div>
 
 
@@ -145,6 +159,6 @@
     <script type="text/javascript" src="scripts/src/YachtArrow.js"></script>
     <script type="text/javascript" src="scripts/data/dataset1.js"></script>
     <script type="text/javascript" src="scripts/map_one.js"></script>
-</div>
+  </div>
 </body>
 </html>
