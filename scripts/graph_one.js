@@ -443,6 +443,7 @@ var chart = new Highcharts.Chart({
                     }
                 },
                 enableMouseTracking: true,
+                stickyTracking: false,
                 lineWidth: 10,
                 states: {
                     hover: {
@@ -452,20 +453,24 @@ var chart = new Highcharts.Chart({
                 events: {
                     mouseOver: function() {
 
-                        disableRedraw()
 
                         this.group.toFront()
 
-                        if (class_3_winner != null) class_3_winner.toFront()
-                        if (class_2_winner != null) class_2_winner.toFront()
-                        if (class_1_winner != null) class_1_winner.toFront()
-
                         this.markerGroup.toFront()
 
-
-                        enableRedraw()
                     },
                     mouseOut: function() {
+
+
+                        if (class_3_winner != null) class_3_winner[0].toFront()
+                        if (class_2_winner != null) class_2_winner[0].toFront()
+                        if (class_1_winner != null) class_1_winner[0].toFront()
+
+
+                        if (class_3_winner != null) class_3_winner[1].toFront()
+                        if (class_2_winner != null) class_2_winner[1].toFront()
+                        if (class_1_winner != null) class_1_winner[1].toFront()
+
                     }
                 }
             }
@@ -474,7 +479,9 @@ var chart = new Highcharts.Chart({
             formatter: function() {
                     return this.series.name + ' - <b>' + position_string(this.y) + '</b><br><em>' + this.series.options.yachtType +'</em>';
             },
-            crosshairs: true
+            crosshairs: true,
+            snap: 5,
+            hideDelay: 100
         },
         legend: true,
         series: yachtseries
@@ -503,9 +510,9 @@ var class_3_winner = null
 $(function () {
     $('.highcharts-container svg text:last').remove();
 
-    class_1_winner = chart.series[chart.series.length-1].group
-    class_2_winner = chart.series[chart.series.length-2].group
-    class_3_winner = chart.series[chart.series.length-3].group
+    class_1_winner = [chart.series[chart.series.length-1].group, chart.series[chart.series.length-1].markerGroup]
+    class_2_winner = [chart.series[chart.series.length-2].group, chart.series[chart.series.length-2].markerGroup]
+    class_3_winner = [chart.series[chart.series.length-3].group, chart.series[chart.series.length-3].markerGroup]
 
     $('#class_1_btn').click(function(){
         disableRedraw();
