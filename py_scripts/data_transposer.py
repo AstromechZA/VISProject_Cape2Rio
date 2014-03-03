@@ -112,7 +112,7 @@ for boat in boats:
             if data['days'][i].__class__.__name__ == 'dict' and data['days'][i]['status'] == 'RACING':
                 break
             elif data['days'][i] == None:
-                data['days'][i] = statdict
+                data['days'][i] = {'status': statdict['status']}
 
         data['days'] = map(lambda s: s if s else {'status': 'NO REPORT'}, data['days'])
 

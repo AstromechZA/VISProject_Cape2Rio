@@ -29,9 +29,10 @@ markertypes = {
 for boat, info in data.iteritems():
     print '{'
     print "    name: '%s'," % boatdata[boat]['prettyname']
-    print "    data: expand_daily_positions(%s, %s)," % (info['points'], markertypes[info['result']])
+    print "    data: expand_daily_positions(%s, %s, %s)," % (info['points'], markertypes[info['result']], info['end'])
     print "    color: class_%s_colour(0.5)," % boatdata[boat]['class']
     print "    marker: {enabled: false},"
-    print "    lineWidth: 7,"
-    print "    dashstyle: 'shortdash'"
+    print "    lineWidth: 5,"
+    print "    dashstyle: 'solid',"
+    print "    yachtType: ''"
     print '},'
