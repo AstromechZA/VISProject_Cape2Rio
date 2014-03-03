@@ -73,7 +73,10 @@ for day in xrange(0,days+1):
             position_series[boat]['points'] += [pos]
 
         if e['last']:
+            if e['status'] != 'FINISHED':
+                done.add(boat)
             position_series[boat]['result'] = e['status']
+            position_series[boat]['end'] = day
 
 print json.dumps(position_series)
 
