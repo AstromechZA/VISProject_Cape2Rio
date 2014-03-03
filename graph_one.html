@@ -73,17 +73,24 @@
   </nav>
   <div class="container">
     <div class="row clearfix">
-      <div class="col-md-12 column">
-        <div style="margin-left: 177px;">
-          <h2>
-            Interim position graph
-          </h2>
-        </div>
-        <div id="map_wrapper">
-          <div id="map-canvas" style="height: 400px; width: 867px;float:left"></div>
-
-          <div id="slider" style="width: 867px; float:left"></div>
-          <div style="width: 867px; margin-top:7px; float:left">
+	    <div class="col-md-12 column">
+			<div style="margin-left: 50px;">
+				<h2>
+					Interim position graph
+				</h2>
+			</div>
+			<div id="map-canvas" style="height: 400px; width: 880px; margin-left: 50px; float: left;"></div>
+			<div id="map-canvas-key" style="float: right; width: 190px; height: 120px; margin-top: 0px; border: 1px solid #333; -moz-border-radius: 10px; border-radius: 10px; text-align: center; padding-top:10px; font-size: 12pt;">
+				<b>Course Key:</b>
+				<img src="Images/Course Velocity.png" alt="course velocity key">
+			</div>
+			<div id="daily-position-graph-key" style="float: right; width:190px; height: 230px; margin-top: 50px; border: 1px solid #333; -moz-border-radius: 10px; border-radius: 10px; text-align: center; padding-top:10px; font-size: 12pt;">
+				<div style="width=100%;"><b>Position Key:</b></div>
+				<img src="Images/Symbol Key.png" width="184" height="184" alt="course velocity key">
+			</div>
+			<div id="slider" style="width: 880px; margin-left: 50px; float: left;"></div>
+			
+			<div style="width: 867px; margin-top:7px; float:left">
             <div class="slider_tick_label_space">&nbsp;</div>
             <div class="slider_tick_label">1</div>
             <div class="slider_tick_label">2</div>
@@ -114,23 +121,8 @@
             <div class="slider_tick_label">27</div>
             <div class="slider_tick_label">28</div>
           </div>
-          <div id="map-canvas-key" style="float: right; width: 190px; height: 120px; margin-top: 0px; border: 1px solid #333; -moz-border-radius: 10px; border-radius: 10px; text-align: center; padding-top:10px; font-size: 12pt;">
-            <b>Course Key:</b>
-            <img src="images/Course Velocity.png" alt="course velocity key">
-          </div>
-          <div id="daily-position-graph-key" style="float: right; width:190px; height: 230px; margin-top: 50px; border: 1px solid #333; -moz-border-radius: 10px; border-radius: 10px; text-align: center; padding-top:10px; font-size: 12pt;">
-            <div style="width=100%;"><b>Position Key:</b></div>
-            <img src="images/Symbol Key.png" width="184" height="184" alt="course velocity key">
-          </div>
-          <div class='clearfix'></div>
-        </div>
-
-
-
-        <nav class="navbar navbar-default" role="navigation" style="margin-top:40px;">
-          <div class="navbar-form">
-            <div id="toggle_btn_group" class="btn-group" data-toggle="buttons">
-
+			
+            <div style="margin-left:50px; margin-top: 20px; float:left; width: 100%;" id="toggle_btn_group" class="btn-group" data-toggle="buttons">
               <label id="class_1_btn" class="btn btn-sm btn-success">
                 <input type="checkbox"> Racing
               </label>
@@ -141,13 +133,10 @@
                 <input type="checkbox"> Multihull
               </label>
             </div>
-          </div>
-        </nav>
+			
+			<div id="container" style="min-width: 310px; height: 820px; margin: auto; margin-top: 10px;"></div>
 
-        <div id="container" style="min-width: 310px; height: 820px; margin: auto; margin-top: 10px;"></div>
-
-
-      </div>
+        </div>
     </div>
 
 
