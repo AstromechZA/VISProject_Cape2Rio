@@ -425,7 +425,6 @@ var chart = new Highcharts.Chart({
                     v = this.value;
                     for (var i = 0; i < yachtseries.length; i++) {
                         var last = yachtseries[i].data.length-1
-                        console.log(yachtseries[i].data)
                         if (yachtseries[i].data[last] == v || yachtseries[i].data[last].y == v) {
                             return '<strong>' + position_string(v) + '</strong> - '  + yachtseries[i].name;
                         }
@@ -458,6 +457,72 @@ var chart = new Highcharts.Chart({
         series: yachtseries
     });
 
+var graph_one_class_1_hidden = false
+var graph_one_class_2_hidden = false
+var graph_one_class_3_hidden = false
+
+var redraw = chart.redraw
+var fakeRedraw = function(){};
+
+var disableRedraw = function() {
+    chart.redraw = fakeRedraw
+}
+
+var enableRedraw = function() {
+    chart.redraw = redraw;
+    chart.redraw();
+}
+
 $(function () {
     $('.highcharts-container svg text:last').remove();
+
+    $('#class_1_btn').click(function(){
+        disableRedraw();
+        if (graph_one_class_1_hidden) {
+            for (var i = chart.series.length - 1; i >= 0; i--) {
+                if (chart.series[i].color == class_1_colour(0.5)) chart.series[i].show()
+            };
+            graph_one_class_1_hidden = false
+        } else {
+            for (var i = chart.series.length - 1; i >= 0; i--) {
+                if (chart.series[i].color == class_1_colour(0.5)) chart.series[i].hide()
+            };
+            graph_one_class_1_hidden = true
+        }
+        enableRedraw();
+    })
+
+    $('#class_2_btn').click(function(){
+        disableRedraw();
+        if (graph_one_class_2_hidden) {
+            for (var i = chart.series.length - 1; i >= 0; i--) {
+                if (chart.series[i].color == class_2_colour(0.5)) chart.series[i].show()
+            };
+            graph_one_class_2_hidden = false
+        } else {
+            for (var i = chart.series.length - 1; i >= 0; i--) {
+                if (chart.series[i].color == class_2_colour(0.5)) chart.series[i].hide()
+            };
+            graph_one_class_2_hidden = true
+        }
+        enableRedraw();
+    })
+
+    $('#class_3_btn').click(function(){
+        disableRedraw();
+        if (graph_one_class_3_hidden) {
+            for (var i = chart.series.length - 1; i >= 0; i--) {
+                if (chart.series[i].color == class_3_colour(0.5)) chart.series[i].show()
+            };
+            graph_one_class_3_hidden = false
+        } else {
+            for (var i = chart.series.length - 1; i >= 0; i--) {
+                if (chart.series[i].color == class_3_colour(0.5)) chart.series[i].hide()
+            };
+            graph_one_class_3_hidden = true
+        }
+        enableRedraw();
+    })
+
 });
+

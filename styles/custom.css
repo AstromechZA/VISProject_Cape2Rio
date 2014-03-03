@@ -7,3 +7,8 @@
     height: 70px;
     padding-top: 0;
 }
+
+#toggle_btn_group .btn.active {
+    background-color: #eee;
+    color: #444;
+}
