@@ -22,7 +22,7 @@ $.widget("app.slider", $.ui.slider, {
         ticks: false
     },
 
-    _create: function(){    
+    _create: function(){
         this._super();
         if (!this.options.ticks || this.options.step < 5){
             return;
@@ -33,10 +33,9 @@ $.widget("app.slider", $.ui.slider, {
             left;
 
         while ( cnt < this.options.max ) {
-            
+
             // Compute the "left" CSS property for the next tick mark.
             left = ( cnt / this.options.max * 100 ).toFixed( 2 ) + "%";
-            console.log(left);
 
             // Creates the tick div, and adds it to the element. It adds the
             // "ui-slider-tick" class, which has common properties for each tick.
@@ -76,7 +75,7 @@ var init = function _init() {
             ticks: true,
             value: 29*24
         });
-    
+
 
     global_yachts = []
 
