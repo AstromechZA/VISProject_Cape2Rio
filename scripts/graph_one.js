@@ -381,15 +381,17 @@ var chart = new Highcharts.Chart({
         chart: {
             renderTo: 'container'
         },
-        title: {
-            text: 'Daily race position'
-        },
-        xAxis: {
+        title: false,
+        xAxis: [{
+            categories: day_labels(28),
+            min: 0,
+            max: (28*3)
+        },{
             categories: day_labels(28),
             opposite: true,
             min: 0,
             max: (28*3)
-        },
+        }],
         yAxis: [{
             title: false,
             allowDecimals: false,
@@ -408,8 +410,14 @@ var chart = new Highcharts.Chart({
             max: yachtseries.length + 0.5,
             labels: {
                 formatter: function(){
+                    c = this.chart;
                     v = this.value;
-                    return '<strong>' + position_string(v) + '</strong>'
+                    for (var i = 0; i < yachtseries.length; i++) {
+                        if (yachtseries[i].data[0] == v || yachtseries[i].data[0].y == v) {
+                            return yachtseries[i].name + ' - <strong>' + position_string(v) + '</strong>';
+                        }
+                    };
+                    return position_string(v);
                 }
             }
         },{
