@@ -56,7 +56,7 @@ var init = function _init() {
     // create map
     global_map = new google.maps.Map($('#map-canvas')[0], {
         zoom: 4,
-        center: new google.maps.LatLng(-28.767659, -14.779358),
+        center: new google.maps.LatLng(-28.767659, -13.909358),
         disableDefaultUI: true,
         minZoom: 4,
         maxZoom: 10
@@ -70,11 +70,11 @@ var init = function _init() {
         // activate slider
         $("#slider").slider({
             min: 0,
-            max: 28*24,
+            max: 29*24,
             slide: slider_slide,
             step: 24,
             ticks: true,
-            value: 28*24
+            value: 29*24
         });
     
 

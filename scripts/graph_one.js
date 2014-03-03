@@ -12,15 +12,24 @@ var marker_cross = function _marker_cross(y) {
 
 // Colour creation function
 var class_1_colour = function _class_1_colour(o) {
-    return 'rgba(120, 183, 47, ' + o + ')'
+    if(o != 1) {
+        return 'rgba(187, 218, 150, 1)'
+    }
+    return 'rgba(120, 183, 47, 1)'
 }
 
 var class_2_colour = function _class_2_colour(o) {
-    return 'rgba(183, 47, 47, ' + o + ')'
+    if(o != 1) {
+        return 'rgba(218, 150, 150, 1)'
+    }
+    return 'rgba(183, 47, 47, 1)'
 }
 
 var class_3_colour = function _class_3_colour(o) {
-    return 'rgba(47, 87, 183, ' + o + ')'
+    if(o != 1){
+        return 'rgba(150, 170, 218, 1)'
+    }
+    return 'rgba(47, 87, 183, 1)'
 }
 
 // day label creator
@@ -35,7 +44,7 @@ var day_labels = function _day_labels(n) {
 
 // return number with appropriate suffix
 var position_string = function _position_string(i) {
-    return '' + i + (((i % 10) < 4 && (i%10)>0) ? ['st','nd','rd'][i%10-1] : 'th');
+    return '' + i + (((i % 10) < 4 && (i%10)>0) ? (Math.floor(i / 10) % 10 == 1 ? 'th' : ['st','nd','rd'][i%10-1]) : 'th');
 }
 
 var expand_daily_positions = function _expand_daily_positions(position_array, end_mark_f, end_day) {
@@ -439,12 +448,17 @@ var chart = new Highcharts.Chart({
                     enabled: true,
                     states: {
                         hover: {
-                            enabled: false
+                            enabled: false,
                         }
                     }
                 },
                 enableMouseTracking: true,
-                lineWidth: 10
+                lineWidth: 10,
+                states: {
+                    hover: {
+                        lineWidth: 11
+                    }
+                }
             }
         },
         tooltip: {
@@ -453,7 +467,7 @@ var chart = new Highcharts.Chart({
             },
             crosshairs: true
         },
-        legend: false,
+        legend: true,
         series: yachtseries
     });
 
@@ -524,5 +538,11 @@ $(function () {
         enableRedraw();
     })
 
+    // $('#button1').click(function(){
+    //     for(var i = 0; i < chart.series.length; i++){
+    //         if(yachtseries[i].color == 'rgba(187, 218, 150, 1)'){
+    //             chart.series[i].hide();
+    //         }
+    //     }
+    // })
 });
-
