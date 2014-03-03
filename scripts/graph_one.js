@@ -408,14 +408,8 @@ var chart = new Highcharts.Chart({
             max: yachtseries.length + 0.5,
             labels: {
                 formatter: function(){
-                    c = this.chart;
                     v = this.value;
-                    for (var i = yachtseries.length - 1; i >= 0; i--) {
-                        if (yachtseries[i].data[0] == v || yachtseries[i].data[0].y == v) {
-                            return '' + yachtseries[i].name + ' - <strong>' + position_string(v) + '</strong>';
-                        }
-                    };
-                    return this.value;
+                    return '<strong>' + position_string(v) + '</strong>'
                 }
             }
         },{
@@ -434,7 +428,7 @@ var chart = new Highcharts.Chart({
                             return '<strong>' + position_string(v) + '</strong> - '  + yachtseries[i].name;
                         }
                     };
-                    return this.value;
+                    return position_string(v);
                 }
             }
         }],
@@ -457,7 +451,11 @@ var chart = new Highcharts.Chart({
                 },
                 events: {
                     mouseOver: function() {
-                        this.graph.toFront()
+                        this.group.toFront()
+
+                        if (class_3_winner != null) class_3_winner.toFront()
+                        if (class_2_winner != null) class_2_winner.toFront()
+                        if (class_1_winner != null) class_1_winner.toFront()
 
                     },
                     mouseOut: function() {
@@ -491,8 +489,16 @@ var enableRedraw = function() {
     chart.redraw();
 }
 
+var class_1_winner = null
+var class_2_winner = null
+var class_3_winner = null
+
 $(function () {
     $('.highcharts-container svg text:last').remove();
+
+    class_1_winner = chart.series[chart.series.length-1].group
+    class_2_winner = chart.series[chart.series.length-2].group
+    class_3_winner = chart.series[chart.series.length-3].group
 
     $('#class_1_btn').click(function(){
         disableRedraw();
