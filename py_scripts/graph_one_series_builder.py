@@ -34,5 +34,5 @@ for boat, info in data.iteritems():
     print "    marker: {enabled: false},"
     print "    lineWidth: 5,"
     print "    dashstyle: 'solid',"
-    print "    yachtType: ''"
+    print "    lastState: '%s'" % markertypes[info['result']]
     print '},'
