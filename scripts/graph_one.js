@@ -451,12 +451,19 @@ var chart = new Highcharts.Chart({
                 },
                 events: {
                     mouseOver: function() {
+
+                        disableRedraw()
+
                         this.group.toFront()
 
                         if (class_3_winner != null) class_3_winner.toFront()
                         if (class_2_winner != null) class_2_winner.toFront()
                         if (class_1_winner != null) class_1_winner.toFront()
 
+                        this.markerGroup.toFront()
+
+
+                        enableRedraw()
                     },
                     mouseOut: function() {
                     }
