@@ -1,31 +1,64 @@
-//graph_one_scripts.js
-
-// marker creation functions
-
-// day label creator
-// must create blank labels in order to separate days
-var day_labels = function _day_labels(n) {
-    o = []
-    for (var i = 0; i <= n; i++) {
-        o.push('', i, '')
-    };
-    return o.slice(1, -1)
-}
-
 // modify graph container to fit height
 $('#container').css('height', yachtseries.length * 23 + 100);
 
-var chart = new Highcharts.Chart({
+var chart = null
+
+var graph_one_class_1_hidden = false
+var graph_one_class_2_hidden = false
+var graph_one_class_3_hidden = false
+
+var realredraw = null
+
+var disableRedraw = function() {
+    realredraw = chart.redraw
+    chart.redraw = function(){};
+}
+
+var enableRedraw = function() {
+    chart.redraw = redraw;
+    chart.redraw();
+}
+
+var class_1_winner = null
+var class_2_winner = null
+var class_3_winner = null
+
+var global_map;
+var global_yachts;
+var global_rhumbline_path;
+
+var slider_slide = function _slider_slide(event, ui) {
+    var day = Math.floor(ui.value / 24)
+    update_position_graph(day)
+
+    var hold = global_map.redraw;
+    global_map.redraw = function(){}
+
+    for (var i = global_yachts.length - 1; i >= 0; i--) global_yachts[i].update(ui.value)
+
+    global_map.redraw = hold
+    google.maps.event.trigger(global_map, "resize")
+}
+
+var update_position_graph = function(day) {
+    var num_series = chart.series.length;
+    for(var i=0; i < num_series; i++) chart.series[i].setData(yachtseries[i].data.slice(0, day*3), false);
+    chart.redraw();
+}
+
+$(function () {
+
+    chart = new Highcharts.Chart({
         chart: {
             renderTo: 'container'
         },
         title: false,
         xAxis: [{
-            categories: day_labels(28),
+            categories: [0, "", "", 1, "", "", 2, "", "", 3, "", "", 4, "", "", 5, "", "", 6, "", "", 7, "", "", 8, "", "", 9, "", "", 10, "", "", 11, "", "", 12, "", "", 13, "", "", 14, "", "", 15, "", "", 16, "", "", 17, "", "", 18, "", "", 19, "", "", 20, "", "", 21, "", "", 22, "", "", 23, "", "", 24, "", "", 25, "", "", 26, "", "", 27, "", "", 28],
             min: 0,
             max: (28*3)
         },{
-            categories: day_labels(28),
+            categories: [0, "", "", 1, "", "", 2, "", "", 3, "", "", 4, "", "", 5, "", "", 6, "", "", 7, "", "", 8, "", "", 9, "", "", 10, "", "", 11, "", "", 12, "", "", 13, "", "", 14, "", "", 15, "", "", 16, "", "", 17, "", "", 18, "", "", 19, "", "", 20, "", "", 21, "", "", 22, "", "", 23, "", "", 24, "", "", 25, "", "", 26, "", "", 27, "", "", 28],
             opposite: true,
             min: 0,
             max: (28*3)
@@ -133,27 +166,6 @@ var chart = new Highcharts.Chart({
         series: yachtseries
     });
 
-var graph_one_class_1_hidden = false
-var graph_one_class_2_hidden = false
-var graph_one_class_3_hidden = false
-
-var redraw = chart.redraw
-var fakeRedraw = function(){};
-
-var disableRedraw = function() {
-    chart.redraw = fakeRedraw
-}
-
-var enableRedraw = function() {
-    chart.redraw = redraw;
-    chart.redraw();
-}
-
-var class_1_winner = null
-var class_2_winner = null
-var class_3_winner = null
-
-$(function () {
     $('.highcharts-container svg text:last').remove();
 
     class_1_winner = [chart.series[chart.series.length-1].group, chart.series[chart.series.length-1].markerGroup]
@@ -208,4 +220,79 @@ $(function () {
         enableRedraw();
     })
 
+    // rhumbline object
+    // activate via .setMap
+    global_rhumbline_path = new google.maps.Polyline({
+        path: [
+            new google.maps.LatLng(-23.051582, -43.081390),
+            new google.maps.LatLng(-33.912276, 18.399475)
+        ],
+        geodesic: true,
+        strokeColor: '#000000',
+        strokeOpacity: 0.5,
+        strokeWeight: 1
+    });
+
+
+    $.widget("app.slider", $.ui.slider, {
+        options: {
+            ticks: false
+        },
+        _create: function(){
+            this._super();
+            if (!this.options.ticks || this.options.step < 5){
+                return;
+            }
+
+            var cnt = this.options.min + this.options.step,
+                background = this.element.css( "border-color" ),
+                left;
+
+            while ( cnt < this.options.max ) {
+
+                // Compute the "left" CSS property for the next tick mark.
+                left = ( cnt / this.options.max * 100 ).toFixed( 2 ) + "%";
+
+                // Creates the tick div, and adds it to the element. It adds the
+                // "ui-slider-tick" class, which has common properties for each tick.
+                // It also applies the computed CSS properties, "left" and "background".
+                $( "<div/>" ).addClass( "ui-slider-tick" )
+                             .appendTo( this.element )
+                             .css( { left: left, background: background } );
+
+                cnt += this.options.step;
+            }
+        }
+    });
+
+    // create map
+    global_map = new google.maps.Map($('#map-canvas')[0], {
+        zoom: 4,
+        center: new google.maps.LatLng(-28.767659, -13.909358),
+        disableDefaultUI: true,
+        minZoom: 4,
+        maxZoom: 10
+    });
+
+    // add rhumbline
+    global_rhumbline_path.setMap(global_map);
+
+    // activate slider
+    $("#slider").slider({
+        min: 0,
+        max: 29*24,
+        slide: slider_slide,
+        step: 24,
+        ticks: true,
+        value: 29*24
+    });
+
+
+    global_yachts = []
+
+    for (var i = dataset.length-1; i >= 0; i--) {
+        var b = new Yacht(dataset[i])
+        b.add_track_to_map(global_map)
+        global_yachts.push(b)
+    }
 });
