@@ -34,3 +34,15 @@
     padding:0px 0px 0px 0px;
     margin:0px 0px 0px 0px;
 }
+
+.yacht_label {
+    color: black;
+    background-color: white;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid black;
+    border-radius:5px;
+    padding: 5px;
+}

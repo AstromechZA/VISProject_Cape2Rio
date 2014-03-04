@@ -272,6 +272,19 @@ $(function () {
         maxZoom: 10
     });
 
+    global_map._yacht_tooltip = new MarkerWithLabel({
+        position: new google.maps.LatLng(0,0),
+        draggable: false,
+        raiseOnDrag: false,
+        map: global_map,
+        labelContent: 'hello',
+        labelAnchor: new google.maps.Point(30, 20),
+        labelClass: "yacht_label", // the CSS class for the label
+        labelStyle: {opacity: 1.0},
+        icon: "http://placehold.it/1x1",
+        visible: false
+     });
+
     // add rhumbline
     global_rhumbline_path.setMap(global_map);
 

@@ -1,17 +1,20 @@
 
 // constructor
-var YachtArrow = function _YachtArrow(cll, b, s, cs) {
+var YachtArrow = function _YachtArrow(cll, b, s, cs, t) {
     this.center = cll;
     this.bearing = b;
     this.size = s;
     this.color_str = cs;
     this._o = null;
     this._map = null;
+    this._track = t
     this.reconstruct();
 }
 
 // rebuild geometry
 YachtArrow.prototype.reconstruct = function() {
+
+
 
     var wingangle = Math.PI * 0.75;
     var s_maj = this.size;
@@ -39,6 +42,17 @@ YachtArrow.prototype.reconstruct = function() {
         fillColor: this.color_str,
         fillOpacity: 0.8,
         strokeWeight: 0
+    });
+
+    this._o.__arrow = this
+
+    google.maps.event.addListener(this._o, "mousemove", function(event) {
+        global_map._yacht_tooltip.set('labelContent', this.__arrow._track.yacht.yacht_name)
+        global_map._yacht_tooltip.setPosition(event.latLng);
+        global_map._yacht_tooltip.setVisible(true);
+    });
+    google.maps.event.addListener(this._o, "mouseout", function(event) {
+        global_map._yacht_tooltip.setVisible(false);
     });
 
     this.show();
