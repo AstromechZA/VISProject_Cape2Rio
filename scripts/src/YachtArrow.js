@@ -14,8 +14,6 @@ var YachtArrow = function _YachtArrow(cll, b, s, cs, t) {
 // rebuild geometry
 YachtArrow.prototype.reconstruct = function() {
 
-
-
     var wingangle = Math.PI * 0.75;
     var s_maj = this.size;
     var s_min = this.size * 0.8;
@@ -46,7 +44,7 @@ YachtArrow.prototype.reconstruct = function() {
 
     this._o.__arrow = this
 
-    google.maps.event.addListener(this._o, "mousemove", function(event) {
+    google.maps.event.addListener(this._o, "mouseover", function(event) {
         global_map._yacht_tooltip.set('labelContent', this.__arrow._track.yacht.yacht_name)
         global_map._yacht_tooltip.setPosition(event.latLng);
         global_map._yacht_tooltip.setVisible(true);
