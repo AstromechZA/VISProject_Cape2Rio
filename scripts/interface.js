@@ -15,7 +15,7 @@ var disableRedraw = function() {
 }
 
 var enableRedraw = function() {
-    chart.redraw = redraw;
+    chart.redraw = realredraw;
     chart.redraw();
 }
 
@@ -27,9 +27,12 @@ var global_map;
 var global_yachts;
 var global_rhumbline_path;
 
+var global_selected_day = 29
+
 var slider_slide = function _slider_slide(event, ui) {
-    var day = Math.floor(ui.value / 24)
-    update_position_graph(day)
+    global_selected_day = Math.floor(ui.value / 24)
+
+    update_position_graph()
 
     var hold = global_map.redraw;
     global_map.redraw = function(){}
@@ -40,13 +43,16 @@ var slider_slide = function _slider_slide(event, ui) {
     google.maps.event.trigger(global_map, "resize")
 }
 
-var update_position_graph = function(day) {
+var update_position_graph = function() {
+    disableRedraw();
     var num_series = chart.series.length;
-    for(var i=0; i < num_series; i++) chart.series[i].setData(yachtseries[i].data.slice(0, day*3), false);
-    chart.redraw();
+    for(var i=0; i < num_series; i++) chart.series[i].setData(yachtseries[i].data.slice(0, global_selected_day*3), false);
+    enableRedraw();
 }
 
 $(function () {
+
+    var xaxiscategories = [0, "", "", 1, "", "", 2, "", "", 3, "", "", 4, "", "", 5, "", "", 6, "", "", 7, "", "", 8, "", "", 9, "", "", 10, "", "", 11, "", "", 12, "", "", 13, "", "", 14, "", "", 15, "", "", 16, "", "", 17, "", "", 18, "", "", 19, "", "", 20, "", "", 21, "", "", 22, "", "", 23, "", "", 24, "", "", 25, "", "", 26, "", "", 27, "", "", 28]
 
     chart = new Highcharts.Chart({
         chart: {
@@ -54,11 +60,11 @@ $(function () {
         },
         title: false,
         xAxis: [{
-            categories: [0, "", "", 1, "", "", 2, "", "", 3, "", "", 4, "", "", 5, "", "", 6, "", "", 7, "", "", 8, "", "", 9, "", "", 10, "", "", 11, "", "", 12, "", "", 13, "", "", 14, "", "", 15, "", "", 16, "", "", 17, "", "", 18, "", "", 19, "", "", 20, "", "", 21, "", "", 22, "", "", 23, "", "", 24, "", "", 25, "", "", 26, "", "", 27, "", "", 28],
+            categories: xaxiscategories,
             min: 0,
             max: (28*3)
         },{
-            categories: [0, "", "", 1, "", "", 2, "", "", 3, "", "", 4, "", "", 5, "", "", 6, "", "", 7, "", "", 8, "", "", 9, "", "", 10, "", "", 11, "", "", 12, "", "", 13, "", "", 14, "", "", 15, "", "", 16, "", "", 17, "", "", 18, "", "", 19, "", "", 20, "", "", 21, "", "", 22, "", "", 23, "", "", 24, "", "", 25, "", "", 26, "", "", 27, "", "", 28],
+            categories: xaxiscategories,
             opposite: true,
             min: 0,
             max: (28*3)
@@ -81,9 +87,9 @@ $(function () {
             max: yachtseries.length + 0.5,
             labels: {
                 formatter: function(){
-                    c = this.chart;
-                    v = this.value;
-                    for (var i = 0; i < yachtseries.length; i++) {
+                    var v = this.value
+                    var n = yachtseries.length
+                    for (var i = 0; i < n; i++) {
                         if (yachtseries[i].data[0] == v || yachtseries[i].data[0].y == v) {
                             return yachtseries[i].name + ' - <strong>' + Util.position_string(v) + '</strong>';
                         }
@@ -99,9 +105,9 @@ $(function () {
             opposite: true,
             labels: {
                 formatter: function(){
-                    c = this.chart;
-                    v = this.value;
-                    for (var i = 0; i < yachtseries.length; i++) {
+                    var v = this.value;
+                    var n = yachtseries.length
+                    for (var i = 0; i < n; i++) {
                         var last = yachtseries[i].data.length-1
                         if (yachtseries[i].data[last] == v || yachtseries[i].data[last].y == v) {
                             if (yachtseries[i].lastState == 'marker_flag') return '<strong>' + Util.position_string(v) + '</strong> - '  + yachtseries[i].name;
@@ -131,32 +137,24 @@ $(function () {
                 },
                 events: {
                     mouseOver: function() {
-
-
                         this.group.toFront()
-
                         this.markerGroup.toFront()
-
                     },
                     mouseOut: function() {
-
-
                         if (class_3_winner != null) class_3_winner[0].toFront()
                         if (class_2_winner != null) class_2_winner[0].toFront()
                         if (class_1_winner != null) class_1_winner[0].toFront()
 
-
                         if (class_3_winner != null) class_3_winner[1].toFront()
                         if (class_2_winner != null) class_2_winner[1].toFront()
                         if (class_1_winner != null) class_1_winner[1].toFront()
-
                     }
                 }
             }
         },
         tooltip: {
             formatter: function() {
-                    return this.series.name + ' - <b>' + Util.position_string(this.y) + '</b><br><em>' + this.series.options.yachtType +'</em>';
+                    return this.series.name + ' - <b>' + Util.position_string(this.y) + '</b><br><em>' +'</em>';
             },
             crosshairs: true,
             snap: 5,

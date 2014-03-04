@@ -20,8 +20,8 @@ var YachtTrack = function _YachtTrack(yacht, map) {
             ],
             position: new google.maps.LatLng(temp[1][0], temp[1][1]),
             geodesic: true,
-              strokeOpacity: 0.7,
-              strokeColor: yacht._dataset.colour_string,
+              strokeOpacity: 1,
+              strokeColor: YachtColour.class_colour(0.5, yacht.racing_class),
               strokeWeight: 2,//distance/4,
             map: map,
             visible: true
@@ -45,9 +45,15 @@ YachtTrack.prototype.setProgress = function(time) {
     var b, p;
     for (var i = 0; i < pl; i++) {
         p = this.points[i]
-        b = (p[0] <= time);
-        p[1].setVisible(b)
-        if(b) last = p
+
+        if (p[0] <= time) {
+            p[1].setMap(this.map)
+            last = p
+        }
+        else
+        {
+            p[1].setMap(null)
+        }
     };
 
     this.arrow.setCenter(last[1].position)

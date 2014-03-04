@@ -28,3 +28,9 @@ YachtColour.class_three = function(opacity) {
     var b = YachtColour._premul(YachtColour.__class_three_rgb[2], opacity)
     return 'rgb(' + [r,g,b].join(',') + ')'
 };
+
+YachtColour.class_colour = function(opacity, cls) {
+    if (cls==1) return YachtColour.class_one(opacity)
+    if (cls==2) return YachtColour.class_two(opacity)
+    if (cls==3) return YachtColour.class_three(opacity)
+}

@@ -17,15 +17,6 @@ var yachtseries = [{
         lastState: 'marker_flag'
     },
     {
-        name: 'YOLO',
-        data: Util.expand_daily_positions([8, 8, 7, 5, 2, 1, 1, 2, 5, 6, 8, 8, 8, 9, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 7, 7, 7, 7], ChartMarker.marker_flag, 25),
-        color: YachtColour.class_two(1),
-        marker: {enabled: false},
-        lineWidth: 5,
-        dashstyle: 'solid',
-        lastState: 'marker_flag'
-    },
-    {
         name: 'Black Cat',
         data: Util.expand_daily_positions([19, 18, 20], ChartMarker.marker_cross, 2),
         color: YachtColour.class_one(0.4),
@@ -83,15 +74,6 @@ var yachtseries = [{
         name: 'Tulliana',
         data: Util.expand_daily_positions([26, 26, 25, 21, 20, 20, 17, 16, 14, 15, 20, 12, 12, 11, 12, 12, 11, 10, 10, 10, 10, 11, 10, 11, 10, 11, 11, 13, 14], ChartMarker.marker_flag, 24),
         color: YachtColour.class_three(0.4),
-        marker: {enabled: false},
-        lineWidth: 5,
-        dashstyle: 'solid',
-        lastState: 'marker_flag'
-    },
-    {
-        name: 'Myrtle Of Bonnievale',
-        data: Util.expand_daily_positions([7, 7, 8, 7, 7, 6, 6, 6, 7, 10, 10, 10, 10, 10, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 15, 17, 18, 11, 12], ChartMarker.marker_flag, 27),
-        color: YachtColour.class_three(1),
         marker: {enabled: false},
         lineWidth: 5,
         dashstyle: 'solid',
@@ -206,15 +188,6 @@ var yachtseries = [{
         lastState: 'marker_flag'
     },
     {
-        name: 'Maserati',
-        data: Util.expand_daily_positions([35, 35, 35, 35, 32, 24, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], ChartMarker.marker_flag, 11),
-        color: YachtColour.class_one(1),
-        marker: {enabled: false},
-        lineWidth: 5,
-        dashstyle: 'solid',
-        lastState: 'marker_flag'
-    },
-    {
         name: 'Avocet',
         data: Util.expand_daily_positions([24, 25, 27], ChartMarker.marker_cross, 2),
         color: YachtColour.class_one(0.4),
@@ -312,5 +285,32 @@ var yachtseries = [{
         lineWidth: 5,
         dashstyle: 'solid',
         lastState: 'marker_cross'
+    },
+    {
+        name: 'Myrtle Of Bonnievale',
+        data: Util.expand_daily_positions([7, 7, 8, 7, 7, 6, 6, 6, 7, 10, 10, 10, 10, 10, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 15, 17, 18, 11, 12], ChartMarker.marker_flag, 27),
+        color: YachtColour.class_three(1),
+        marker: {enabled: false},
+        lineWidth: 9,
+        dashstyle: 'solid',
+        lastState: 'marker_flag'
+    },
+    {
+        name: 'YOLO',
+        data: Util.expand_daily_positions([8, 8, 7, 5, 2, 1, 1, 2, 5, 6, 8, 8, 8, 9, 9, 9, 10, 11, 12, 12, 12, 12, 12, 13, 13, 7, 7, 7, 7], ChartMarker.marker_flag, 25),
+        color: YachtColour.class_two(1),
+        marker: {enabled: false},
+        lineWidth: 9,
+        dashstyle: 'solid',
+        lastState: 'marker_flag'
+    },
+    {
+        name: 'Maserati',
+        data: Util.expand_daily_positions([35, 35, 35, 35, 32, 24, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], ChartMarker.marker_flag, 11),
+        color: YachtColour.class_one(1),
+        marker: {enabled: false},
+        lineWidth: 9,
+        dashstyle: 'solid',
+        lastState: 'marker_flag'
     }
 ];
