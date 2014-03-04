@@ -25,3 +25,12 @@
     width: 1.85%;
     text-align: center;
 }
+
+.GMAPS_OVERLAY
+{
+    border-width: 0px;
+    border: none;
+    position:absolute;
+    padding:0px 0px 0px 0px;
+    margin:0px 0px 0px 0px;
+}
