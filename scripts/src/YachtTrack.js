@@ -1,4 +1,5 @@
 var YachtTrack = function _YachtTrack(yacht, map) {
+    this.map = map
     this.yacht = yacht
     this.points = []
 
@@ -21,7 +22,7 @@ var YachtTrack = function _YachtTrack(yacht, map) {
             geodesic: true,
               strokeOpacity: 0.7,
               strokeColor: yacht._dataset.colour_string,
-              strokeWeight: distance/4,
+              strokeWeight: 2,//distance/4,
             map: map,
             visible: true
         })
@@ -38,10 +39,12 @@ var YachtTrack = function _YachtTrack(yacht, map) {
 }
 
 YachtTrack.prototype.setProgress = function(time) {
+
     var last = this.points[0]
     var pl = this.points.length
+    var b, p;
     for (var i = 0; i < pl; i++) {
-        var p = this.points[i]
+        p = this.points[i]
         b = (p[0] <= time);
         p[1].setVisible(b)
         if(b) last = p
@@ -49,5 +52,6 @@ YachtTrack.prototype.setProgress = function(time) {
 
     this.arrow.setCenter(last[1].position)
     this.arrow.setBearing(last[2])
+
 
 }

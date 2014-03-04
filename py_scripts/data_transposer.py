@@ -80,7 +80,10 @@ for day_file in perdayfiles:
                 lon = (int(m.groups()[6]) + float(m.groups()[7])/60.0) * (-1 if (m.groups()[9] == 'W') else 1)
                 daily_reports[boat][day] = {'pos': [lat, lon], 'status': 'RACING'}
 
-def haversine_midpoint(lat1, lat2, lon1, lon2):
+def haversine_midpoint(lat1, lon1, lat2, lon2):
+
+    lon1, lat1, lon2, lat2 = map(math.radians, [lon1, lat1, lon2, lat2])
+
     dl = lon2-lon1
     Bx = math.cos(lat2) * math.cos(dl)
     By = math.cos(lat2) * math.sin(dl)
@@ -91,6 +94,14 @@ def haversine_midpoint(lat1, lat2, lon1, lon2):
 
 def haversine_midpoint_p(p1, p2):
     return haversine_midpoint(p1[0], p1[1], p2[0], p2[1])
+
+def fake_midpoint(p1, p2):
+    dx = p2[0] - p1[0]
+    dy = p2[1] - p1[1]
+
+    return [p1[0] + dx/2.0, p1[1] + dy/2.0]
+
+
 
 for boat in boats:
     boat_file_name = boat.replace(' ', '_')
@@ -119,7 +130,11 @@ for boat in boats:
         for x in xrange(1,dc):
             if data['days'][x]['status'] == 'NO REPORT':
                 if data['days'][x-1]['status'] == 'RACING' and data['days'][x+1]['status'] == 'RACING':
-                    data['days'][x]['pos'] = haversine_midpoint_p(data['days'][x-1]['pos'], data['days'][x+1]['pos'])
+                    p1 = data['days'][x-1]['pos']
+                    p2 = data['days'][x+1]['pos']
+                    mid = fake_midpoint(p1, p2)
+
+                    data['days'][x]['pos'] = mid
                     data['days'][x]['status'] = 'RACING'
 
             if not 'pos' in data['days'][x]:

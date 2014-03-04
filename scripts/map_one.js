@@ -77,7 +77,7 @@ var init = function _init() {
 
     global_yachts = []
 
-    for (var i = 10; i >= 0; i--) {
+    for (var i = dataset.length-1; i >= 0; i--) {
         var b = new Yacht(dataset[i])
         b.add_track_to_map(global_map)
         global_yachts.push(b)
@@ -87,7 +87,14 @@ var init = function _init() {
 var slider_slide = function _slider_slide(event, ui) {
         var day = Math.floor(ui.value / 24)
         update_position_graph(day)
+
+        var hold = global_map.redraw;
+        global_map.redraw = function(){}
+
         for (var i = global_yachts.length - 1; i >= 0; i--) global_yachts[i].update(ui.value)
+
+        global_map.redraw = hold
+        google.maps.event.trigger(global_map, "resize")
 }
 
 var update_position_graph = function(day) {
