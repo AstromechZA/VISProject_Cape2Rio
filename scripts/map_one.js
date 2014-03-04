@@ -64,22 +64,20 @@ var init = function _init() {
     // add rhumbline
     global_rhumbline_path.setMap(global_map);
 
-
-
-        // activate slider
-        $("#slider").slider({
-            min: 0,
-            max: 29*24,
-            slide: slider_slide,
-            step: 24,
-            ticks: true,
-            value: 29*24
-        });
+    // activate slider
+    $("#slider").slider({
+        min: 0,
+        max: 29*24,
+        slide: slider_slide,
+        step: 24,
+        ticks: true,
+        value: 29*24
+    });
 
 
     global_yachts = []
 
-    for (var i = dataset.length - 1; i >= 0; i--) {
+    for (var i = 10; i >= 0; i--) {
         var b = new Yacht(dataset[i])
         b.add_track_to_map(global_map)
         global_yachts.push(b)

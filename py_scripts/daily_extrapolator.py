@@ -82,7 +82,8 @@ for boat_file in perboatfiles:
         last = points[-1][1]
         current = hourly_points[i]
         distance = round(haversine(last[0], last[1], current[0], current[1]),2)
-        angle = round(bearing(last[1], last[0], current[1], current[0]))
+
+        angle = (round(bearing(last[1], last[0], current[1], current[0])) if (distance > 0.01) else points[-1][2])
         points += [[i*3600, hourly_points[i], angle, distance]]
 
     output_boat_data = {}
