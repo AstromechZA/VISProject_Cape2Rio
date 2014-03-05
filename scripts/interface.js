@@ -263,14 +263,36 @@ $(function () {
         }
     });
 
+    var mapstyle = [
+      {
+        "featureType": "water",
+        "stylers": [
+          { "lightness": 65 }
+        ]
+      },{
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+          { "lightness": -35 }
+        ]
+      }
+    ]
+    var styledMap = new google.maps.StyledMapType(mapstyle, {name: "Styled Map"});
+
     // create map
     global_map = new google.maps.Map($('#map-canvas')[0], {
         zoom: 4,
         center: new google.maps.LatLng(-28.767659, -13.909358),
         disableDefaultUI: true,
         minZoom: 4,
-        maxZoom: 10
+        maxZoom: 10,
+        mapTypeControlOptions: {
+          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+        }
     });
+
+    global_map.mapTypes.set('map_style', styledMap);
+    global_map.setMapTypeId('map_style');
 
     global_map._yacht_tooltip = new MarkerWithLabel({
         position: new google.maps.LatLng(0,0),
