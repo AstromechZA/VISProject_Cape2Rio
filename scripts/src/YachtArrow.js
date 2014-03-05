@@ -39,7 +39,9 @@ YachtArrow.prototype.reconstruct = function() {
         path: [Ps, Pt1, this.center, Pt2, Ps],
         fillColor: this.color_str,
         fillOpacity: 0.8,
-        strokeWeight: 0
+        strokeWeight: 1,
+        strokeColor: '#000000',
+        zIndex: 10
     });
 
     this._o.__arrow = this
