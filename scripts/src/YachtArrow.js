@@ -48,7 +48,7 @@ YachtArrow.prototype.reconstruct = function() {
 
     google.maps.event.addListener(this._o, "mouseover", function(event) {
         global_map._yacht_tooltip.set('labelContent', this.__arrow._track.yacht.yacht_name)
-        global_map._yacht_tooltip.setPosition(event.latLng);
+        global_map._yacht_tooltip.setPosition(this.__arrow.center);
         global_map._yacht_tooltip.setVisible(true);
     });
     google.maps.event.addListener(this._o, "mouseout", function(event) {

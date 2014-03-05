@@ -139,6 +139,10 @@ $(function () {
                     mouseOver: function() {
                         this.group.toFront()
                         this.markerGroup.toFront()
+
+
+
+
                     },
                     mouseOut: function() {
                         if (class_3_winner != null) class_3_winner[0].toFront()
@@ -300,7 +304,7 @@ $(function () {
         raiseOnDrag: false,
         map: global_map,
         labelContent: 'hello',
-        labelAnchor: new google.maps.Point(30, 20),
+        labelAnchor: new google.maps.Point(0, 40),
         labelClass: "yacht_label", // the CSS class for the label
         labelStyle: {opacity: 1.0},
         icon: "http://placehold.it/1x1",
