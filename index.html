@@ -18,6 +18,11 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script type="text/javascript" src="scripts/lib/bootstrap.min.js"></script>
+  <style>
+	h4 {
+		color: blue;
+	}
+  </style>
 </head>
 
 <body>
@@ -52,16 +57,270 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <img src="images/img1.jpg" alt="" class="img-thumbnail">
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="row">
+        <div class="col-md-12">
+			<div class="page-header">
+				<h1>Introduction</h1>
+			</div>
+			<h3>Problem description</h3>
+			<p>Sports are a popular form of entertainment and there is a growing need to visualise complicated sports, such as yacht racing, which can be difficult to understand and interpret at a glance. The problem that we have identified is the visualising of yacht position data and we have decided to formulate a solution for the Cape 2 Rio 2014 yacht race which could be applied to other similar regattas. <br><br>
+			Yachts receive different handicaps based on their specifications. These handicaps effectively function as a multiplier for a yacht’s racing time, thereby affecting their final rank. This makes it difficult to determine which yacht is in the lead at any given time, since each yacht races along a different course line and their distance from the finishing line is no longer an accurate measure of rank. Rather, a yacht’s final rank is determined at the end of the race by multiplying their time by their handicap to obtain an adjusted time. Final rankings are then determined by ascending order of the adjusted times.<br><br>
+			The problem is further complicated by different yacht classes. The Cape 2 Rio yacht race has three different classes for the different types of hulls on the yachts, namely Cruising, Racing and Multihull. While the race is a single event, each class will have its own winner. Therefore yachts are not racing everyone in the race, but rather those in their class. Determining who is currently the leader in each class on a simple map or tabulated data can be difficult and tedious.<br><br>
+			Our solution to this problem will be to normalise rankings by integrating yacht handicaps into interactive yacht position data so that spectators can easily follow the Cape 2 Rio yacht race on a daily basis.</p>
 
+			<br>
+
+			<h3>Data</h3>
+			<p>In order to accurately plot yacht progress during the race we wanted to get hourly GPS positions for each yacht. Initially we had hoped to get a full and correct dataset from the company that had installed the satellite trackers on the yachts for the race. Unfortunately, after many emails, we realised that we wouldn’t get the data on time and so we looked at other options.<br><br>
+			At the end of every race day, a pdf document was released to the public on the website (<a href="http://www.cape2rio2014.com">www.cape2rio2014.com</a>). Each document contained a table of each yachts’ status and position at the end of the day. We used a combination of pdf scraping and manual data entry to pull the positions from these pdf documents. The daily positions were then extrapolated into hourly positions using Haversine formulas which take into account the earth's shape when calculating distances, bearings, and midpoints.<br><br>
+			This data is then provided to our application in a JSON format.
+			</p>
+	
+			<br>
+
+			<h3>Target user profile</h3>
+			<p>This visualization will be aimed at yacht enthusiasts and spectators who are interested in the Cape 2 Rio yacht race. More specifically, it is aimed at people who are somewhat familiar with yacht racing concepts (e.g. handicaps, classes), as our visualisations assume users have some prior knowledge about how these concepts work and affect rankings.
+			</p>
+
+			<br>
+
+			<div class="page-header">
+				<h1>Overview & Analysis of Related Work</h1>
+			</div>
+			<p>Currently there is no indication of an interactive visualisation which allows yacht enthusiasts to follow a regatta daily. However there are daily tables and informal visualisations relating to the race. Some example are outlined below:
+			</p>
+
+			<p>
+				<strong>:)</strong>
+				<br>
+				<em><small>(Source: <a href="http://www.cape2rio2014.com/index.php/results/item/309-day-27-handicap-and-overall-positions">http://www.cape2rio2014.com/index.php/results/item/309-day-27-handicap-and-overall-positions</a>)</small></em>
+			</p>
+
+			<p>The above table shows the Cape to Rio race positions on Day 27. The data itself is useful and is tabulated daily (as above), but any query for worthwhile information is slow and difficult to interpret. Our system’s goal is to visualise such data in a way that allows users to quickly and easily access valuable information.
+			</p>
+
+			<br>
+
+			<p>
+				<strong>:)</strong><br>
+				<em><small>(Source: <a href="http://www.xtra-track.com/cape2rio2014">www.xtra-track.com/cape2rio2014</a>)</small></em>
+			</p>
+
+			<br>
+
+			<p>The above graphic shows the course of the yachts in the Cape 2 Rio race. This is the most common form of visualising yacht race data around the world. It is extremely cluttered and difficult to get valuable information from. It is also not clear which yachts belong to which class (and therefore considered the leaders) and shows no indication of the influence of yacht handicaps on their current rankings.<br><br>
+			The different colours for each yacht makes it relatively easy to trace a specific yacht’s course through the race, and was used as inspiration for our final design.
+			</p>
+			<br>
+			<div class="page-header">
+				<h1>Analysis of Visual Queries</h1>
+			</div>
+			<p>The visual queries our system supports, ranked in order of importance:
+				<ol>
+					<li>Which yacht is currently in the lead overall?</li>
+					<li>Which yacht is the leader in each class?</li>
+					<li>Is a particular yacht still racing or have they retired?</li>
+					<br>
+					<li>How far away is a yacht from Rio?</li>
+					<li>What was a yacht’s relative speed at any point along its course? (Good or bad day?)</li>
+					<li>What is the course of a particular yacht?</li>
+				</ol>
+			</p>
+			<br>
+
+			<div class="page-header">
+				<h1>Detailed Description of Design</h1>
+			</div>
+			<p>Our design allows the viewer to interact with two visualizations interconnected by a daily slider. The design of our visualization system has undergone many iterations of evaluation and modification. Our design process and rationale is outlined below.<br><br>
+			Below is our initial paper prototype. The visualization at the top of the page visualises the position of the yachts and serves our first three visual queries. The bottom visualization is used to visualise the course of the yachts, supporting our bottom three visual queries which are less important.<br><br>
+			We found it necessary to make use of two visualisations as they support very different queries. Trying to answer all our visual queries using one visualisation would not only be difficult, but it would appear overwhelming to the reader.
+			</p>
+
+			<br>
+
+			<p>
+				<strong>&lt;Paper prototype image&gt;</strong>
+			</p>
+
+			<br>
+
+			<h4>Rationalization of Design 1: Yacht Positions</h4>
+			<p>From the paper prototype we came up with our first design, which can be seen below. This design is overwhelming at first glance. The different colours make it easy to follow each yacht however no information about each yacht class is available. Also no priority is given to the leading yachts of each class.<br><br>
+			While this version has many flaws, it forms the core design that will be used in the next versions. It allows the user to “follow” a yacht’s position over the duration of the event. The horizontal lines are a natural way of depicting information changing over time. This is the basis of the rational behind the designs that follow that will allow a user to quickly determine which yachts are leaders in their classes and at what points in time.<br><br>
+			Rank axes appear on both left and right sides of the graph. This stops a user from having to trace the line of a yacht across the graph to see their final position.
+			</p>
+
+			<br>
+
+			<p>
+				<strong>&lt;Design 1 image&gt;</strong>
+			</p>
+
+			<br>
+
+			<p>We came up with a second design below, in which we tried to correct the issues present in the previous design.  We used less colours to make it appear less busy and categorised the various yacht classes by colour. Different opacities were used so that the leading yachts of each class stood out above the rest. While this change did make it easier to spot the leaders, there was still not enough contrast between leaders and non-leaders to make it a fast query.
+			</p>
+
+			<br>
+
+			<p>
+				<strong>&lt;Design 2 image&gt;</strong>
+			</p>
+
+			<br>
+
+			<p>We further corrected the issues present in design two and came up with a third design. This design uses a colour palette with a greater contrast and dashed lines to differentiate between class leaders. The dashed line seems to attract the eye too much, the dashed lines are supposed to be less important than the solid ones.
+			</p>
+
+			<br>
+
+			<p>
+				<strong>&lt;Design 3 image&gt;</strong>
+			</p>
+
+			<br>
+
+			<p>Improving on our third design we came up with a final design for our first presentation. This design can be seen below. This improved design makes use of different line thicknesses for leaders which is less distracting than the dashed lines, but as effective. Yacht names and positions have been added to both y-axes to speed visual queries up by not needing to trace the lines back. Icons indicating the yachts status (finished, retired) have been added so that users can quickly query a specific yachts status. The lines of higher ranked yachts are brought to the foreground to indicate importance. A tooltip has been added to the online version, this makes it easy to trace yacht names along the lines. Hovering over a yacht line in the interactive version greatly increases the thickness of the line to create contrast, further aiding the tracing of a yacht’s position over time.
+			</p>
+
+			<br>
+
+			<p>
+				<strong>&lt;Design 4 image&gt;</strong>
+			</p>
+
+			<br>
+
+			<h4>Rationalization of design 2: Yacht Courses</h4>
+			<p>Using the ideas we came up with in our paper prototype we designed our second visualisation. This visualisation plots the course, distance from Rio and relative speed. Larger dots are used to indicate an increased yacht speed. This design is easily cluttered, leading us to implement a solution on the online version which makes use of a zoomable and draggable map.
+			</p>
+
+			<br>
+
+			<p>
+				<strong>&lt;Yacht course image&gt;</strong>
+			</p>
+
+			<br>
+
+			<h4>Rationalization of Final Design: Integration of the two visualizations</h4>
+			<p>After the feedback and criticism from the first presentation, we set out to improve our design using the suggestions given. <br><br>
+			The suggestions from our first presentations were:
+				<ul>
+					<li>Combine the two graphics: map above the other, with timeline indicated.</li>
+					<li>Use a legend to associate meaning to symbols.</li>
+					<li>Combine colour with line type for yacht position.</li>
+					<li>Real data set! What about gaps in the data?</li>
+				</ul><br>
+
+			Firstly, the two visualisations were ‘merged’ by placing the daily yacht position graph below the course map. The slider was integrated into both visualisations, thus moving the slider would affect both visualisations. Additionally daily ‘ticks’ were added to the slider. A universal  yacht class and icon status legend was added in between the two visualisation as it is applicable to both of them. Additionally a legend was added to the world map to denote how an increase in speed is shown visually. A more contrasting line thickness was used to differentiate between leaders and non-winners opposed to using different line textures which attracted unwanted attention. Additionally a line thickness animation was added when a user hovers over a specific yacht. This allows users to view the change of position of non-winning yachts. A real data set was acquired from <a href="http://www.cape2rio2014.com">www.cape2rio2014.com</a>. The data was in a daily formated which was ideal for our daily yacht position graph but needed to be extrapolated so that hourly positions could be shown on the course map.<br><br>
+
+			Additionally we came up with a few improvements ourselves:<br><br>
+			<ul>
+				<li>Filterable yacht classes.</li>
+				<li>Additional x-axis for data near the bottom of the page.</li>
+			</ul><br>
+
+			We further set out to improve our design with the feedback given from the second presentation. The suggestion from our second presentation was:<br><br>
+			<ul>
+				<li>Adjust the hue as well as the intensity of the lines to help distinguish them?</li>
+			</ul>
+
+			<br>
+
+			<div class="page-header">
+				<h1>Visualization Techniques used in Final Design</h1>
+			</div>
+
+			<h4>Colour</h4>
+			<p>Our final design makes use of a triadic colour scheme with three major colours namely green, red and blue. Each colour is used to represent a different class of yacht. This colour scheme has been used as colours are evenly spaced around a colour wheel in a triadic scheme which creates maximum contrast and stability amongst colours. These colours are unique hues to humans, thus they are easy to identify and distinguish.<br><br>
+			Opacity has been used to create contrast between the winners and non-winners of each class. The winners in each class are given a higher opacity to make them “pop-out”.
+			</p>
+
+			<br>
+
+			<h4>Motion</h4>
+			<p>Motion was one of the techniques which we made use of to achieve pop-out. The line thickness of the daily position graph changes when a specific yachts position line is hovered over. This creates a higher level of contrast for the hovered over yacht, allowing the user to more clearly track the yachts changes in position over the duration of the race.<br><br>
+			Additionally motion has been used on the course map, users are capable of zooming in and out of the map as well as dragging the map to change the central view position.<br><br>
+			Integrally, our visualisation makes use of motion when the user selects a different position on the daily slider. Allowing the user to dynamically see the change in yachts positions and course as the race progresses each day.
+			</p>
+
+			<br>
+
+			<h4>Emphasis</h4>
+			<p>Emphasis was accomplished by contrasting class winners and non-winners by using a lower opacity for non-winners than winners.</p>
+
+			<br>
+
+			<h4>Symbols</h4>
+			<p>Symbols have been used in our design as they are useful to draw meaning from, aiding the speedup of important and frequent queries. We have attempted to use universal symbols as they already have meaning associated with them. Thus the symbols are easy to recognise and use. A flag symbol is used to represent a yacht finishing the race and a cross is used to denote a yacht pulling out of the race. Additionally there is a legend which associates certain meanings to the specific symbols.</p>
+
+			<br>
+
+			<h4>Shape</h4>
+			<p>The icons (symbols) used in our design all have distinct shapes. These shapes are unique in what they represent. </p>
+
+			<br>
+
+			<div class="page-header">
+				<h1>Strengths and Weaknesses of Implementation</h1>
+			</div>
+
+			<h4>Difficulties encountered</h4>
+			<p>The major difficulty that we encountered was that we did not get hourly yacht position data as planned. This forced us to retrieve daily data from <a href="http://www.cape2rio2014.com">www.cape2rio2014.com</a>, which was sufficient to plot the changes in position of the yachts on a daily basis. However our course map requires hourly data in order to show the course of the yachts fluidly. Thus hourly data was extrapolated from the daily yacht data. This lead to difficulties such as the extraction and cleaning of the real data sets from different data formats and structuring it accordingly.<br><br>
+
+Carrying design choices and decisions across two different tools (Google Maps and Highcharts) proved to be challenging.<br><br>
+
+Additionally, our design decisions lead to poor scaling when provided with larger data sets than those used during the prototype. We solved this issue by adding an additional x-axis at the bottom of the page and increasing the contrast between class winners and non-winners by increasing the opacity of non-winners.</p>
+
+			<br>
+
+			<h4>Strengths</h4>
+			<p>
+				<ul>
+					<li>Visualisation applicable to other regattas.</li>
+					<li>Interactive design.</li>
+					<li>Linking of the two visualisations makes for more intuitive usage of the system.</li>
+				</ul>
+			</p>
+
+			<br>
+
+			<h4>Weaknesses</h4>
+			<p>
+				<ul>
+					<li>Overwhelming at first glance.</li>
+					<li>Slight learning curve.</li>
+				</ul>
+			</p>
+
+			<br>
+
+			<h4>Constraints</h4>
+			<p>See Target User Profile section.</p>
+			
+			<br>
+
+			<div class="page-header">
+				<h1>Division of Work</h1>
+			</div>
+
+			<p>The initial idea,  brainstorming and the creation of our paper prototype was done by <strong>Benjamin</strong>.<br><br>
+			<strong>Michael</strong> focused on creating a list of the most important visual queries that our visualisation would support. This included listing visual queries in order of importance and the rationalization of our design choices according to the design principles mentioned in class.<br><br>
+			<strong>Justin and Benjamin</strong> are both experienced web developers and decided to test out two open source graphing libraries, namely Highcharts and D3. It was concluded that we would be able to modify the Highcharts library according to our requirements in a timely fashion opposed to D3, which required a large amount of work just to get started.<br><br>
+			After we concluded that Highcharts would be suitable for our needs, <strong>Benjamin</strong> began coding the course map and <strong>Justin</strong> started working on the daily position graph. For the majority of the coding we worked in a peer-programming environment whereby <strong>Michael</strong> sat behind Benjamin and Justin helping with design decisions and feedback.<br><br>
+<strong>Michael</strong> worked on two keys (legends) for the visualisation system which was integral in order to associate specific meanings to various symbols.
+			</p> 
+
+			<br>
+
+			<div class="page-header">
+				<h1>Visualization Techniques used in Final Design</h1>
+			</div>
+
+			<p>Final paragraph here.</p>
+			<br>
+    </div>
 </div>
 </body>
 </html>
