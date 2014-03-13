@@ -20,7 +20,11 @@
   <script type="text/javascript" src="scripts/lib/bootstrap.min.js"></script>
   <style>
 	h4 {
-		color: blue;
+		color: #2E74B5;
+	}
+	
+	.centre_image {
+	text-align: center;
 	}
   </style>
 </head>
@@ -52,6 +56,9 @@
             <li>
               <a href="interface.html">Interface</a>
             </li>
+			<li>
+			 <a href="pdf/report.pdf"> Report (PDF)</a>
+			</li>
         </ul>
     </div>
     </div>
@@ -90,22 +97,22 @@
 			<p>Currently there is no indication of an interactive visualisation which allows yacht enthusiasts to follow a regatta daily. However there are daily tables and informal visualisations relating to the race. Some example are outlined below:
 			</p>
 
-			<p>
-				<strong>:)</strong>
+			<div class="centre_image">
+				<img src="images/report/Cape2rio2014Day27Positions.png" alt="Cape2Rio2014 Day27 Positions" width="896" height="559">
 				<br>
 				<em><small>(Source: <a href="http://www.cape2rio2014.com/index.php/results/item/309-day-27-handicap-and-overall-positions">http://www.cape2rio2014.com/index.php/results/item/309-day-27-handicap-and-overall-positions</a>)</small></em>
-			</p>
-
+			</div>
+<br>
 			<p>The above table shows the Cape to Rio race positions on Day 27. The data itself is useful and is tabulated daily (as above), but any query for worthwhile information is slow and difficult to interpret. Our system’s goal is to visualise such data in a way that allows users to quickly and easily access valuable information.
 			</p>
 
 			<br>
 
-			<p>
-				<strong>:)</strong><br>
+			<div class="centre_image">
+				<img src="images/report/xtra-trackCourseMap.png" alt="Xtra-track Course Map" width="782	" height="422"><br>
 				<em><small>(Source: <a href="http://www.xtra-track.com/cape2rio2014">www.xtra-track.com/cape2rio2014</a>)</small></em>
-			</p>
-
+			</div>
+			
 			<br>
 
 			<p>The above graphic shows the course of the yachts in the Cape 2 Rio race. This is the most common form of visualising yacht race data around the world. It is extremely cluttered and difficult to get valuable information from. It is also not clear which yachts belong to which class (and therefore considered the leaders) and shows no indication of the influence of yacht handicaps on their current rankings.<br><br>
@@ -138,10 +145,9 @@
 
 			<br>
 
-			<p>
-				<strong>&lt;Paper prototype image&gt;</strong>
-			</p>
-
+			<div class="centre_image">
+				<img src="images/report/PaperPrototype.png" alt="Paper Prototype" width="602" height="641">			
+			</div>
 			<br>
 
 			<h4>Rationalization of Design 1: Yacht Positions</h4>
@@ -152,10 +158,9 @@
 
 			<br>
 
-			<p>
-				<strong>&lt;Design 1 image&gt;</strong>
-			</p>
-
+			<div class="centre_image">
+				<img src="images/report/g1.png" alt="Design 1 image" width="636" height="536">
+			</div>
 			<br>
 
 			<p>We came up with a second design below, in which we tried to correct the issues present in the previous design.  We used less colours to make it appear less busy and categorised the various yacht classes by colour. Different opacities were used so that the leading yachts of each class stood out above the rest. While this change did make it easier to spot the leaders, there was still not enough contrast between leaders and non-leaders to make it a fast query.
@@ -163,10 +168,9 @@
 
 			<br>
 
-			<p>
-				<strong>&lt;Design 2 image&gt;</strong>
-			</p>
-
+			<div class="centre_image">
+			<img src="images/report/g2.png" alt="Design 2 image" width="772" height="225">
+			</div>
 			<br>
 
 			<p>We further corrected the issues present in design two and came up with a third design. This design uses a colour palette with a greater contrast and dashed lines to differentiate between class leaders. The dashed line seems to attract the eye too much, the dashed lines are supposed to be less important than the solid ones.
@@ -174,10 +178,9 @@
 
 			<br>
 
-			<p>
-				<strong>&lt;Design 3 image&gt;</strong>
-			</p>
-
+			<div class="centre_image">
+				<img src="images/report/g3.png" alt="Design 3 image" width="773" height="235">
+			</div>
 			<br>
 
 			<p>Improving on our third design we came up with a final design for our first presentation. This design can be seen below. This improved design makes use of different line thicknesses for leaders which is less distracting than the dashed lines, but as effective. Yacht names and positions have been added to both y-axes to speed visual queries up by not needing to trace the lines back. Icons indicating the yachts status (finished, retired) have been added so that users can quickly query a specific yachts status. The lines of higher ranked yachts are brought to the foreground to indicate importance. A tooltip has been added to the online version, this makes it easy to trace yacht names along the lines. Hovering over a yacht line in the interactive version greatly increases the thickness of the line to create contrast, further aiding the tracing of a yacht’s position over time.
@@ -185,10 +188,9 @@
 
 			<br>
 
-			<p>
-				<strong>&lt;Design 4 image&gt;</strong>
-			</p>
-
+			<div class="centre_image">
+			<img src="images/report/g4.png" alt="Design 4 image" width="862" height="189">
+			</div>
 			<br>
 
 			<h4>Rationalization of design 2: Yacht Courses</h4>
@@ -197,10 +199,9 @@
 
 			<br>
 
-			<p>
-				<strong>&lt;Yacht course image&gt;</strong>
-			</p>
-
+			<div class="centre_image">
+				<img src="images/report/m1.png" alt="Course Map" width="750" height="372">
+			</div>
 			<br>
 
 			<h4>Rationalization of Final Design: Integration of the two visualizations</h4>
@@ -227,7 +228,10 @@
 			</ul>
 
 			<br>
-
+			<p>
+			To help distinguish between different lines we have made use of different colour saturations and intensities. Additionally class winners have a higher opacity than non-winners, creating a greater contrast to help distinguish them. Hue was used to differentiate between the different yacht classes.
+			</p>
+			<br>
 			<div class="page-header">
 				<h1>Visualization Techniques used in Final Design</h1>
 			</div>
@@ -279,8 +283,8 @@ Additionally, our design decisions lead to poor scaling when provided with large
 			<p>
 				<ul>
 					<li>Visualisation applicable to other regattas.</li>
-					<li>Interactive design.</li>
-					<li>Linking of the two visualisations makes for more intuitive usage of the system.</li>
+					<li>Interactive design makes it far easier to read and understand the large volumes of information the graphic contains.</li>
+					<li>Linking of two visualisations makes for more intuitive usage of the system.</li>
 				</ul>
 			</p>
 
@@ -289,8 +293,9 @@ Additionally, our design decisions lead to poor scaling when provided with large
 			<h4>Weaknesses</h4>
 			<p>
 				<ul>
-					<li>Overwhelming at first glance.</li>
-					<li>Slight learning curve.</li>
+					<li>Overwhelming at first glance, especially to those unfamiliar with yachting concepts.</li>
+					<li>Slight learning curve on how read the graph and to use the interactive slider.</li>
+					<li>Dependence on multiple external graphing libraries places technical restrictions on design possibilities.</li>
 				</ul>
 			</p>
 
@@ -308,17 +313,20 @@ Additionally, our design decisions lead to poor scaling when provided with large
 			<p>The initial idea,  brainstorming and the creation of our paper prototype was done by <strong>Benjamin</strong>.<br><br>
 			<strong>Michael</strong> focused on creating a list of the most important visual queries that our visualisation would support. This included listing visual queries in order of importance and the rationalization of our design choices according to the design principles mentioned in class.<br><br>
 			<strong>Justin and Benjamin</strong> are both experienced web developers and decided to test out two open source graphing libraries, namely Highcharts and D3. It was concluded that we would be able to modify the Highcharts library according to our requirements in a timely fashion opposed to D3, which required a large amount of work just to get started.<br><br>
-			After we concluded that Highcharts would be suitable for our needs, <strong>Benjamin</strong> began coding the course map and <strong>Justin</strong> started working on the daily position graph. For the majority of the coding we worked in a peer-programming environment whereby <strong>Michael</strong> sat behind Benjamin and Justin helping with design decisions and feedback.<br><br>
+			After we concluded that Highcharts would be suitable for our needs, <strong>Benjamin</strong> began coding the course map and <strong>Justin</strong> started working on the daily position graph. For the majority of the coding we worked in a peer-programming environment whereby <strong>Michael</strong> sat behind <strong>Benjamin and Justin</strong> helping with design decisions and feedback.<br><br>
 <strong>Michael</strong> worked on two keys (legends) for the visualisation system which was integral in order to associate specific meanings to various symbols.
 			</p> 
 
 			<br>
 
 			<div class="page-header">
-				<h1>Visualization Techniques used in Final Design</h1>
+				<h1>Future Work & Conclusion</h1>
 			</div>
 
-			<p>Final paragraph here.</p>
+			<p>Refer to Detailed Description of Design wherein issues raised during the second presentation have been dealt with. <br><br>
+Future work would include the need for user testing of the visualisation system and the ability to retrieve and process real-time data (if possible).<br><br>
+In conclusion, our visualisation received a large amount of positive feedback during the two presentations. We have found this project to be enjoyable and worthwhile, producing a design which we are very happy with and could quite easily be marketed as an actual product to the relevant parties, as it is a much better solution than what is currently available.<br><br>
+</p>
 			<br>
     </div>
 </div>
