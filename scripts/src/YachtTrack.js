@@ -2,6 +2,7 @@ var YachtTrack = function _YachtTrack(yacht, map) {
     this.map = map
     this.yacht = yacht
     this.points = []
+    this.isvisible = true
 
     // -----
     var points = yacht._dataset.points
@@ -41,24 +42,43 @@ var YachtTrack = function _YachtTrack(yacht, map) {
 
 YachtTrack.prototype.setProgress = function(time) {
 
+    if(this.isvisible)
+    {
+        var last = this.points[0]
+        var pl = this.points.length
+        var b, p;
+        for (var i = 0; i < pl; i++) {
+            p = this.points[i]
+
+            if (p[0] <= time) {
+                p[1].setMap(this.map)
+                last = p
+            }
+            else
+            {
+                p[1].setMap(null)
+            }
+        };
+
+        this.arrow.setCenter(last[1].position)
+        this.arrow.setBearing(last[2])
+    }
+
+}
+
+YachtTrack.prototype.hide = function() {
     var last = this.points[0]
     var pl = this.points.length
     var b, p;
     for (var i = 0; i < pl; i++) {
         p = this.points[i]
-
-        if (p[0] <= time) {
-            p[1].setMap(this.map)
-            last = p
-        }
-        else
-        {
-            p[1].setMap(null)
-        }
+        p[1].setMap(null)
     };
+    this.isvisible = false
+    this.arrow.hide()
+};
 
-    this.arrow.setCenter(last[1].position)
-    this.arrow.setBearing(last[2])
-
-
-}
+YachtTrack.prototype.show = function() {
+    this.isvisible = true
+    this.arrow.show()
+};
