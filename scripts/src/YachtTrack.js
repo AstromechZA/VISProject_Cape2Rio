@@ -78,7 +78,7 @@ YachtTrack.prototype.hide = function() {
     this.arrow.hide()
 };
 
-YachtTrack.prototype.show = function() {
+YachtTrack.prototype.show = function(time) {
     this.isvisible = true
     this.arrow.show()
 };

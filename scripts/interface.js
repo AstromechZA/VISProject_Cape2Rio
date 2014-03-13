@@ -50,6 +50,32 @@ var update_position_graph = function() {
     enableRedraw();
 }
 
+var set_yacht_class_visible = function(vis, cls) {
+    if (vis) {
+        for (var i = chart.series.length - 1; i >= 0; i--) {
+            if (chart.series[i].color == YachtColour.class_colour(0.4, cls)) {
+                chart.series[i].show()
+            }
+        };
+        for (var i = global_yachts.length - 1; i >= 0; i--) {
+            if(global_yachts[i].racing_class == cls) {
+                global_yachts[i]._track.show()
+                global_yachts[i].update(global_selected_day*24)
+            }
+        };
+    } else {
+        for (var i = chart.series.length - 1; i >= 0; i--) {
+            if (chart.series[i].color == YachtColour.class_colour(0.4, cls))
+            {
+                chart.series[i].hide()
+            }
+        };
+        for (var i = global_yachts.length - 1; i >= 0; i--) {
+            if(global_yachts[i].racing_class == cls) global_yachts[i]._track.hide()
+        };
+    }
+}
+
 $(function () {
 
     var xaxiscategories = [0, "", "", 1, "", "", 2, "", "", 3, "", "", 4, "", "", 5, "", "", 6, "", "", 7, "", "", 8, "", "", 9, "", "", 10, "", "", 11, "", "", 12, "", "", 13, "", "", 14, "", "", 15, "", "", 16, "", "", 17, "", "", 18, "", "", 19, "", "", 20, "", "", 21, "", "", 22, "", "", 23, "", "", 24, "", "", 25, "", "", 26, "", "", 27, "", "", 28]
@@ -139,10 +165,6 @@ $(function () {
                     mouseOver: function() {
                         this.group.toFront()
                         this.markerGroup.toFront()
-
-
-
-
                     },
                     mouseOut: function() {
                         if (class_3_winner != null) class_3_winner[0].toFront()
@@ -176,49 +198,22 @@ $(function () {
 
     $('#class_1_btn').click(function(){
         disableRedraw();
-        if (graph_one_class_1_hidden) {
-            for (var i = chart.series.length - 1; i >= 0; i--) {
-                if (chart.series[i].color == YachtColour.class_one(0.4)) chart.series[i].show()
-            };
-            graph_one_class_1_hidden = false
-        } else {
-            for (var i = chart.series.length - 1; i >= 0; i--) {
-                if (chart.series[i].color == YachtColour.class_one(0.4)) chart.series[i].hide()
-            };
-            graph_one_class_1_hidden = true
-        }
+        set_yacht_class_visible(graph_one_class_1_hidden, 1)
+        graph_one_class_1_hidden = (!graph_one_class_1_hidden)
         enableRedraw();
     })
 
     $('#class_2_btn').click(function(){
         disableRedraw();
-        if (graph_one_class_2_hidden) {
-            for (var i = chart.series.length - 1; i >= 0; i--) {
-                if (chart.series[i].color == YachtColour.class_two(0.4)) chart.series[i].show()
-            };
-            graph_one_class_2_hidden = false
-        } else {
-            for (var i = chart.series.length - 1; i >= 0; i--) {
-                if (chart.series[i].color == YachtColour.class_two(0.4)) chart.series[i].hide()
-            };
-            graph_one_class_2_hidden = true
-        }
+        set_yacht_class_visible(graph_one_class_2_hidden, 2)
+        graph_one_class_2_hidden = (!graph_one_class_2_hidden)
         enableRedraw();
     })
 
     $('#class_3_btn').click(function(){
         disableRedraw();
-        if (graph_one_class_3_hidden) {
-            for (var i = chart.series.length - 1; i >= 0; i--) {
-                if (chart.series[i].color == YachtColour.class_three(0.4)) chart.series[i].show()
-            };
-            graph_one_class_3_hidden = false
-        } else {
-            for (var i = chart.series.length - 1; i >= 0; i--) {
-                if (chart.series[i].color == YachtColour.class_three(0.4)) chart.series[i].hide()
-            };
-            graph_one_class_3_hidden = true
-        }
+        set_yacht_class_visible(graph_one_class_3_hidden, 3)
+        graph_one_class_3_hidden = (!graph_one_class_3_hidden)
         enableRedraw();
     })
 
