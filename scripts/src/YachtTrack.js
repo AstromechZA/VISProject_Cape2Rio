@@ -33,7 +33,8 @@ var YachtTrack = function _YachtTrack(yacht, map) {
     // -----
     this.points[0][1].setVisible(true)
 
-    this.arrow = new YachtArrow(this.points[this.points.length-1][1].position, this.points[this.points.length-1][2], 0.8, yacht.colour, this)
+    last = this.points.length-1
+    this.arrow = new YachtArrow(this.points[last][1].position, this.points[last][2], 0.8, yacht.colour, this)
     this.arrow.setMap(map)
     this.arrow.show()
 }

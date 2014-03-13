@@ -19,18 +19,18 @@ YachtArrow.prototype.reconstruct = function() {
     var s_min = this.size * 0.8;
 
     var Ps = new google.maps.LatLng(
-        this.center.d + s_maj*Math.cos(this.bearing),
-        this.center.e + s_maj*Math.sin(this.bearing)
+        this.center.lat() + s_maj*Math.cos(this.bearing),
+        this.center.lng() + s_maj*Math.sin(this.bearing)
     );
 
     var Pt1 = new google.maps.LatLng(
-        this.center.d + s_min*Math.cos(this.bearing + wingangle),
-        this.center.e + s_min*Math.sin(this.bearing + wingangle)
+        this.center.lat() + s_min*Math.cos(this.bearing + wingangle),
+        this.center.lng() + s_min*Math.sin(this.bearing + wingangle)
     );
 
     var Pt2 = new google.maps.LatLng(
-        this.center.d + s_min*Math.cos(this.bearing - wingangle),
-        this.center.e + s_min*Math.sin(this.bearing - wingangle)
+        this.center.lat() + s_min*Math.cos(this.bearing - wingangle),
+        this.center.lng() + s_min*Math.sin(this.bearing - wingangle)
     );
 
     this.hide();
@@ -41,7 +41,8 @@ YachtArrow.prototype.reconstruct = function() {
         fillOpacity: 0.8,
         strokeWeight: 1,
         strokeColor: '#000000',
-        zIndex: 10
+        zIndex: 10,
+        visible: true
     });
 
     this._o.__arrow = this
