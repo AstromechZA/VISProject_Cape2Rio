@@ -22,7 +22,7 @@
 	h4 {
 		color: #2E74B5;
 	}
-	
+
 	.centre_image {
 	text-align: center;
 	}
@@ -32,35 +32,36 @@
 <body>
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-            <p>Cape To Rio 2014</p>
-                <small><i>&nbsp;&nbsp;A visualisation</i></small>
-        </a>
-    </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <p>Cape To Rio 2014</p>
+                    <small><i>&nbsp;&nbsp;A visualisation</i></small>
+            </a>
+        </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="index.html">Home</a>
-            </li>
-            <li>
-              <a href="yacht_list.html">Yachts</a>
-            </li>
-            <li>
-              <a href="interface.html">Interface</a>
-            </li>
-			<li>
-			 <a href="pdf/report.pdf"> Report (PDF)</a>
-			</li>
-        </ul>
-    </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                  <a href="index.html">Home</a>
+                </li>
+                <li>
+                  <a href="yacht_list.html">Yachts</a>
+                </li>
+                <li>
+                  <a href="interface.html">Interface</a>
+                </li>
+    			<li>
+    			 <a href="pdf/report.pdf"> Report (PDF)</a>
+    			</li>
+            </ul>
+            <p class="navbar-text navbar-right"><em>Created by: Benjamin Meier, Justin Cossutti, and Michael Ferguson</em></p>
+        </div>
     </div>
 </nav>
 <div class="container">
@@ -82,7 +83,7 @@
 			At the end of every race day, a pdf document was released to the public on the website (<a href="http://www.cape2rio2014.com">www.cape2rio2014.com</a>). Each document contained a table of each yachts’ status and position at the end of the day. We used a combination of pdf scraping and manual data entry to pull the positions from these pdf documents. The daily positions were then extrapolated into hourly positions using Haversine formulas which take into account the earth's shape when calculating distances, bearings, and midpoints.<br><br>
 			This data is then provided to our application in a JSON format.
 			</p>
-	
+
 			<br>
 
 			<h3>Target user profile</h3>
@@ -112,7 +113,7 @@
 				<img src="images/report/xtra-trackCourseMap.png" alt="Xtra-track Course Map" width="782	" height="422"><br>
 				<em><small>(Source: <a href="http://www.xtra-track.com/cape2rio2014">www.xtra-track.com/cape2rio2014</a>)</small></em>
 			</div>
-			
+
 			<br>
 
 			<p>The above graphic shows the course of the yachts in the Cape 2 Rio race. This is the most common form of visualising yacht race data around the world. It is extremely cluttered and difficult to get valuable information from. It is also not clear which yachts belong to which class (and therefore considered the leaders) and shows no indication of the influence of yacht handicaps on their current rankings.<br><br>
@@ -146,7 +147,7 @@
 			<br>
 
 			<div class="centre_image">
-				<img src="images/report/PaperPrototype.png" alt="Paper Prototype" width="602" height="641">			
+				<img src="images/report/PaperPrototype.png" alt="Paper Prototype" width="602" height="641">
 			</div>
 			<br>
 
@@ -303,7 +304,7 @@ Additionally, our design decisions lead to poor scaling when provided with large
 
 			<h4>Constraints</h4>
 			<p>See Target User Profile section.</p>
-			
+
 			<br>
 
 			<div class="page-header">
@@ -315,7 +316,7 @@ Additionally, our design decisions lead to poor scaling when provided with large
 			<strong>Justin and Benjamin</strong> are both experienced web developers and decided to test out two open source graphing libraries, namely Highcharts and D3. It was concluded that we would be able to modify the Highcharts library according to our requirements in a timely fashion opposed to D3, which required a large amount of work just to get started.<br><br>
 			After we concluded that Highcharts would be suitable for our needs, <strong>Benjamin</strong> began coding the course map and <strong>Justin</strong> started working on the daily position graph. For the majority of the coding we worked in a peer-programming environment whereby <strong>Michael</strong> sat behind <strong>Benjamin and Justin</strong> helping with design decisions and feedback.<br><br>
 <strong>Michael</strong> worked on two keys (legends) for the visualisation system which was integral in order to associate specific meanings to various symbols.
-			</p> 
+			</p>
 
 			<br>
 
